@@ -1,6 +1,6 @@
 /*
 ===============================================================================
-Project: E-commerce Analytics SQL Portfolio
+Project: E-commerce Analytics SQL Portfolio Set 3
 Database: supersales - modified by KajoData MySQL 8.0+
 Author: Piotr Rzepka
 Description: Advanced SQL exercises focused on delivery performance, customer
