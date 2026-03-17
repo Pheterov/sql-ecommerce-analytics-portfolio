@@ -275,7 +275,6 @@ SELECT
 FROM orders o
 JOIN order_positions op ON o.order_id = op.order_id
 JOIN products p ON op.product_id = p.product_id
-WHERE o.shipping_date >= o.order_date
 GROUP BY o.customer_id
 ORDER BY total_revenue DESC;
 
