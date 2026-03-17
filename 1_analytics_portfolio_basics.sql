@@ -382,7 +382,7 @@ GROUP BY o.customer_id
 SELECT
     ROUND(
         COUNT(CASE WHEN order_count = 1 THEN customer_id END) * 100.0 / 
-        COUNT(*), 2) 															one_time_customers_pct
+        COUNT(DISTINCT customer_id), 2)											one_time_customers_pct
     ,ROUND(
         SUM(CASE WHEN order_count = 1 THEN total_revenue END) * 100.0 / 
         SUM(total_revenue), 2) 													one_time_customers_revenue_pct
