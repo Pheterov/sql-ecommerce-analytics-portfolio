@@ -45,3 +45,9 @@
 ---
 
 ## 🗄️ Database Schema
+
+orders ─┬── order_positions ─── products ─── product_groups
+├── order_ratings (1:1)
+└── order_returns (1:1)
+
+
