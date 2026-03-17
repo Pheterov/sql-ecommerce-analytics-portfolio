@@ -126,8 +126,7 @@ LIMIT 5;
 4️⃣ Average Shipping Time Analysis
 🎯 Goal: Measure operational efficiency
 🛠️ Stack: SQL
-📈 KPI: avg_shipping_days
-💡 Impact: Baseline metric; informs process improvement
+💡 Impact: Baseline metric
 📊 Example KPI: 3,96 days
 ====================================================================================================*/
 SELECT
