@@ -430,6 +430,71 @@ GROUP BY o.delivery_state
 ORDER BY revenue DESC;
 
 /*===================================================================================================
+🎯 Goal: Show difference between baseline metric vs enhanced insight.
+		  Benchmark delivery_state across revenue, customer value and purchasing behavior to support
+          data-driven regional prioritization.
+
+🛠️ Stack: SQL
+
+💡 Business Impact:
+- Identifies top-performing states for targeted marketing and budget allocation
+- Highlights underperforming regions requiring pricing, operational or acquisition improvements
+- Differentiates volume-driven vs value-driven markets for better strategic focus
+
+🔍 Key Insights:
+- Use revenue_rank and revenue_share_pct to identify core markets and assess business dependency
+- Compare AOV, revenue_per_customer and purchase_frequency to distinguish high-value vs high-volume states
+- States with high value metrics but low revenue share signal underpenetrated growth opportunities,
+  while high volume with low value may require upsell or margin optimization
+===================================================================================================*/
+
+WITH state_metrics AS
+(
+SELECT
+    o.delivery_state
+    ,ROUND(SUM(op.item_quantity*COALESCE(p.product_price,0)*
+		(1-COALESCE(op.position_discount,0))), 2)      																revenue
+    ,COUNT(DISTINCT op.order_id)                                                                                  	orders_cnt
+    ,COUNT(DISTINCT o.customer_id)                                                                                	unique_customers
+    ,SUM(op.item_quantity)                                                                                        	total_items_sold
+    ,ROUND(SUM(op.item_quantity) * 1.0 / 
+		COUNT(DISTINCT op.order_id), 2)                                           									avg_items_per_order
+FROM orders o
+JOIN order_positions op ON o.order_id = op.order_id
+JOIN products p ON op.product_id = p.product_id
+GROUP BY o.delivery_state
+), final AS
+(
+SELECT
+    delivery_state
+    ,revenue
+    ,orders_cnt
+    ,unique_customers
+    ,ROUND(revenue / orders_cnt, 2)                                                                                	AoV
+    ,ROUND(revenue / unique_customers, 2)                                                                          	revenue_per_customer
+    ,total_items_sold
+    ,avg_items_per_order
+    ,ROUND(orders_cnt * 1.0 / unique_customers, 2)                                                                 	purchase_frequency
+    ,ROUND(100.0 * revenue / SUM(revenue) OVER (), 2)                                                               revenue_share_pct
+    ,RANK() OVER (ORDER BY revenue DESC)                                                                            revenue_rank
+FROM state_metrics
+)
+SELECT
+	delivery_state
+	,revenue
+	,orders_cnt
+	,unique_customers
+	,AoV
+	,revenue_per_customer
+	,total_items_sold
+	,avg_items_per_order
+	,purchase_frequency
+	,revenue_share_pct
+	,revenue_rank
+FROM final
+ORDER BY revenue DESC;
+
+/*===================================================================================================
 2️⃣ Top 5 Cities by Units Sold
 🎯 Goal: Identify high-volume cities for logistics optimization
 🛠️ Stack: SQL
