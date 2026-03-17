@@ -203,7 +203,7 @@ SELECT
 	,SUM(op.item_quantity * p.product_price * (1 - op.position_discount))		revenue
 	,DENSE_RANK() OVER (
 		PARTITION BY DATE_FORMAT(o.order_date, '%Y-%m-01')
-		ORDER BY SUM(op.item_quantity * p.product_price * (1 - op.position_discount)) DESC
+		ORDER BY SUM(op.item_quantity*p.product_price*(1-op.position_discount)) DESC
 	)																			revenue_rank
 FROM orders o
 JOIN order_positions op ON o.order_id = op.order_id
