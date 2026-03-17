@@ -99,6 +99,7 @@ SELECT
 			ORDER BY month),0), 2)												units_change_pct
 FROM monthly_category_sales
 ORDER BY product_category, month;
+
 /*===================================================================================================
 3️⃣ Top 5 Products by Sales Volume
 🎯 Goal: Highlight best-sellers for marketing & stock allocation
