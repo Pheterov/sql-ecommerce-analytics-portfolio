@@ -130,7 +130,10 @@ LIMIT 5;
 🎯 Goal: Measure operational efficiency
 🛠️ Stack: SQL
 💡 Impact: Baseline metric
-📊 Example KPI: 3,96 days
+📊 Example KPI:
+| avg_shipping_days |
+|-------------------|
+|		 	   3,96 |
 ====================================================================================================*/
 SELECT
     ROUND(AVG(
