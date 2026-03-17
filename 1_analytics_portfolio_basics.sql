@@ -1,12 +1,12 @@
-################################################################################
+#####################################################################################################
 # 🎯 Project: E-commerce Analytics SQL Portfolio
 # 🛠️ Database: supersales - modified by KajoData MySQL 8.0+
 # 👤 Author: Piotr Rzepka
 # 📝 Description: Full-stack SQL-driven e-commerce analytics portfolio
 # 🔍 Focus: customer retention, revenue analysis, product & category performance
-################################################################################
+#####################################################################################################
 
-/*================================================================================
+/*===================================================================================================
 1️⃣ Monthly Business Performance Metrics
 🎯 Goal: Monthly KPIs for management
 🛠️ Stack: SQL
@@ -17,7 +17,7 @@
 | 2018-01   |   324.04	| 		   3       	|	 3   |		108.01     |
 | 2018-02   | 14470.88	| 		  32        |	32   |		452.22     |
 | 2018-03   |  8552.10	| 		  38        |	40   |		213.80     |	
-================================================================================*/
+====================================================================================================*/
 SELECT
     DATE_FORMAT(o.order_date, '%Y-%m-01')										month
     ,ROUND(SUM(op.item_quantity*p.product_price*(1-op.position_discount)), 2) 	revenue
@@ -32,7 +32,7 @@ JOIN products p ON op.product_id = p.product_id
 GROUP BY month
 ORDER BY month;
 
-/*================================================================================
+/*===================================================================================================
 2️⃣ Product Category Performance (Units Sold)
 🎯 Goal: Identify top-selling product categories
 🛠️ Stack: SQL
@@ -44,7 +44,7 @@ ORDER BY month;
 | Office Supplies |  22,906    |
 | Furniture       |   8,028    |
 | Technology      |   6,939    |
-================================================================================*/
+====================================================================================================*/
 SELECT
     pg.category
     ,SUM(op.item_quantity) 														total_units_sold
@@ -54,7 +54,7 @@ JOIN product_groups pg ON p.group_id = pg.group_id
 GROUP BY pg.category
 ORDER BY total_units_sold DESC;
 
-/*================================================================================
+/*===================================================================================================
 # 🎯 Goal: Show difference between baseline metric vs enhanced insight
 # 🛠️ Stack: SQL
 # 💡 Business Insight:
@@ -67,7 +67,7 @@ ORDER BY total_units_sold DESC;
 | 	  2018-02-01	|  			Furniture    	  |			70		 |		  [NULL]|			 [NULL]|
 | 	  2018-03-01	|  			Furniture    	  |			54		 |		  	 -16|			 -22.86|
 | 	  2018-03-01	|  			Furniture    	  |		   103		 |		  	  49|			  90.74|
-================================================================================*/
+====================================================================================================*/
 
 WITH monthly_category_sales AS
 (
@@ -97,7 +97,7 @@ SELECT
 			ORDER BY month),0), 2)												units_change_pct
 FROM monthly_category_sales
 ORDER BY product_category, month;
-/*================================================================================
+/*===================================================================================================
 3️⃣ Top 5 Products by Sales Volume
 🎯 Goal: Highlight best-sellers for marketing & stock allocation
 🛠️ Stack: SQL 
@@ -110,7 +110,7 @@ ORDER BY product_category, month;
 | Easy-staple-paper		|     150    |   3  |
 | Staples-in-misc.		|      86    |   4  |
 | Logitech P710e-Mobile |      75    |   5  |
-================================================================================*/
+====================================================================================================*/
 SELECT
     p.product_name
     ,SUM(op.item_quantity) 														total_units_sold
@@ -122,20 +122,20 @@ GROUP BY p.product_name
 ORDER BY sales_rank
 LIMIT 5;
 
-/*================================================================================
+/*===================================================================================================
 4️⃣ Average Shipping Time Analysis
 🎯 Goal: Measure operational efficiency
 🛠️ Stack: SQL
 📈 KPI: avg_shipping_days
 💡 Impact: Baseline metric; informs process improvement
 📊 Example KPI: 3,96 days
-================================================================================*/
+====================================================================================================*/
 SELECT
     ROUND(AVG(
     	DATEDIFF(o.shipping_date, o.order_date)), 2)							avg_shipping_days
 FROM orders o;
 
-/*================================================================================
+/*============================================================================================================================================
 🎯 Goal: Show difference between baseline metric vs enhanced insight
 🛠️ Stack: SQL
 💡 Business Insight:
@@ -145,15 +145,11 @@ FROM orders o;
      some results (e.g., Furniture, First Class) reflect dataset structure, not real-world logistics
 📊 Example KPI:
 | product_category       | shipping_type    | discounted_flag | avg_shipping_days | min_shipping_days | max_shipping_days | orders_count |
-|------------------------|------------------|-----------------|-------------------|-------------------|-------------------|--------------|
 | Furniture				 |First Class		|Full Price		  |			2.14	  |			1		  |			3		  |		 99		 |
-|------------------------|------------------|-----------------|-------------------|-------------------|-------------------|--------------|
 | Furniture				 |First Class		|Discounted		  |			2.14	  |			1		  |			3		  |		 184	 |
-|------------------------|------------------|-----------------|-------------------|-------------------|-------------------|--------------|
 | Furniture				 |Same Day			|Full Price		  |			0		  |			0		  |			0		  |		 36		 |
-|------------------------|------------------|-----------------|-------------------|-------------------|-------------------|--------------|
 | Furniture				 |Same Day			|Discounted		  |			0		  |			0		  |			1		  |		 63		 |
-================================================================================*/
+============================================================================================================================================*/
 
 SELECT
     pg.category                                 				product_category
@@ -189,7 +185,7 @@ GROUP BY pg.category, o.shipping_mode
 
 ORDER BY product_category, shipping_type, discounted_flag DESC;
 
-/*================================================================================
+/*===================================================================================================
 5️⃣ Monthly Top 3 Products by Revenue
 🎯 Goal: Track top-revenue products monthly
 🛠️ Stack: SQL (CTE + DENSE_RANK)
@@ -201,7 +197,7 @@ ORDER BY product_category, shipping_type, discounted_flag DESC;
 | 2018-01 | Wireless Mouse    | 25,200.50 | 1    |
 | 2018-01 | Bluetooth Speaker | 18,400.75 | 2    |
 | 2018-01 | Laptop Stand      | 12,500.00 | 3    |
-================================================================================*/
+====================================================================================================*/
 WITH monthly_product_revenue AS 
 (
 SELECT
@@ -226,7 +222,7 @@ FROM monthly_product_revenue
 WHERE revenue_rank <= 3
 ORDER BY month, revenue_rank;
 
-/*================================================================================
+/*===================================================================================================
 6️⃣ Customer Revenue Ranking
 🎯 Goal: Segment customers by total lifetime revenue
 🛠️ Stack: SQL (DENSE_RANK)
@@ -238,7 +234,7 @@ ORDER BY month, revenue_rank;
 | CUST_102   | 12,500.50     | 1    |
 | CUST_215   | 11,200.75     | 2    |
 | CUST_078   | 10,900.00     | 3    |
-================================================================================*/
+====================================================================================================*/
 SELECT
     o.customer_id
     ,ROUND(SUM(op.item_quantity*p.product_price*(1-op.position_discount)), 2)	total_revenue
@@ -251,7 +247,7 @@ JOIN products p ON op.product_id = p.product_id
 GROUP BY o.customer_id
 ORDER BY total_revenue DESC;
 
-/*================================================================================
+/*===================================================================================================
 7️⃣ Month-over-Month Revenue Growth
 🎯 Goal: Track revenue trends & growth patterns
 🛠️ Stack: SQL (LAG)
@@ -262,7 +258,7 @@ ORDER BY total_revenue DESC;
 |---------|-----------|----------------|-----------------|
 | 2018-01 | 120,500   | NULL           | NULL            |
 | 2018-02 | 125,400   | 4,900          | 4.07%           |
-================================================================================*/
+====================================================================================================*/
 WITH monthly_revenue AS
 (
 SELECT
@@ -286,7 +282,7 @@ SELECT
 FROM monthly_revenue
 ORDER BY month;
 
-/*================================================================================
+/*===================================================================================================
 8️⃣ New vs Returning Customer Analysis
 🎯 Goal: Analyze acquisition vs retention
 🛠️ Stack: SQL (MIN() OVER)
@@ -297,7 +293,7 @@ ORDER BY month;
 |---------|---------------|------------------|
 | 2018-01 | 300           | 900              |
 | 2018-02 | 280           | 920              |
-================================================================================*/
+====================================================================================================*/
 WITH customer_months AS
 (
 SELECT DISTINCT
@@ -326,7 +322,7 @@ FROM customer_first_month
 GROUP BY month
 ORDER BY month;
 
-/*================================================================================
+/*===================================================================================================
 9️⃣ One-Time Customer Analysis
 🎯 Goal: Quantify customer loyalty via one-time purchases
 🛠️ Stack: SQL
@@ -336,7 +332,7 @@ ORDER BY month;
 | One-time Customers % | Revenue % |
 |---------------------|-----------|
 | 22.5                | 9.8       |
-================================================================================*/
+====================================================================================================*/
 WITH customer_stats AS 
 (
 SELECT
@@ -357,7 +353,7 @@ SELECT
         SUM(total_revenue), 2) 													one_time_customers_revenue_pct
 FROM customer_stats;
 
-/*================================================================================
+/*===================================================================================================
 🔟 Month+1 Customer Retention Rate
 🎯 Goal: Calculate next-month retention
 🛠️ Stack: SQL (LEAD)
@@ -368,7 +364,7 @@ FROM customer_stats;
 |---------|-----------------|-----------------|-------------|
 | 2018-01 | 1,200           | 960             | 80.0        |
 | 2018-02 | 1,250           | 1,000           | 80.0        |
-================================================================================*/
+====================================================================================================*/
 WITH customer_month_activity AS (
 SELECT DISTINCT
 	customer_id
@@ -400,7 +396,7 @@ FROM customer_next_purchase
 GROUP BY month
 ORDER BY month;
 
-/*================================================================================
+/*===================================================================================================
 1️⃣1️⃣ Growth Analysis: New vs Existing Customers
 🎯 Goal: Determine revenue growth drivers: new vs returning customers
 🛠️ Stack: SQL (CTE + window functions)
@@ -411,7 +407,7 @@ ORDER BY month;
 |---------|------------|-----------------|-------|-------------|
 | 2018-01 | 25,000     | 95,000          | 20.8  | 79.2        |
 | 2018-02 | 24,500     | 100,900         | 19.5  | 80.5        |
-================================================================================*/
+====================================================================================================*/
 WITH customer_monthly_revenue AS 
 (
 SELECT
