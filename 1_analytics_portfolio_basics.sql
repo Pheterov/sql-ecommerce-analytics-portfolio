@@ -56,7 +56,7 @@ JOIN product_groups pg ON p.group_id = pg.group_id
 GROUP BY pg.category
 ORDER BY total_units_sold DESC;
 
-/*===================================================================================================
+/*======================================================================================================
 # 🎯 Goal: Show difference between baseline metric vs enhanced insight
 # 🛠️ Stack: SQL
 # 💡 Business Insight:
@@ -69,7 +69,7 @@ ORDER BY total_units_sold DESC;
 | 2018-02-01		| Furniture    	  			  |				  70 |		 [NULL] |			[NULL] |
 | 2018-03-01		| Furniture    	  			  |				  54 |		  	-16 |			-22.86 |
 | 2018-03-01		| Furniture    	  			  |		   		 103 |		  	 49 |			 90.74 |
-====================================================================================================*/
+=======================================================================================================*/
 
 WITH monthly_category_sales AS
 (
