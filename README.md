@@ -95,8 +95,6 @@ Early stage: heavy acquisition → later stage: focus on returning customer reve
 
 # 🎯 Bottom Line
 
-If you need someone who writes SQL that actually drives decisions. 
-<br>
-This repo shows business-first, reproducible analysis with real e-commerce data.
+If you need someone who writes SQL that actually drives decisions, this repo shows business-first, reproducible analysis with real e-commerce data.
 
 > I don’t just analyze data — I look for decisions hidden inside the numbers.
