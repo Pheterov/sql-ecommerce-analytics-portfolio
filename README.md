@@ -53,3 +53,42 @@ orders ─┬── order_positions ─── products ─── product_groups
 └── order_returns (1:1)
 
 
+<details>
+<summary>📋 Click for full table structure</summary>
+
+| Table | Key Columns |
+|-------|-------------|
+| `orders` | order_id, customer_id, order_date, shipping_date, shipping_mode |
+| `order_positions` | order_id, product_id, item_quantity, position_discount |
+| `products` | product_id, product_name, product_price, group_id |
+| `product_groups` | group_id, category, product_group |
+
+</details>
+
+---
+
+## 📈 Sample Output
+
+**Monthly Revenue Performance**
+| month | revenue | unique_customers | orders | AOV |
+|-------|---------|------------------|--------|-----|
+| 2018-01 | 324.04 | 3 | 3 | 108.01 |
+| 2018-02 | 14,470.88 | 32 | 32 | 452.22 |
+| 2018-03 | 8,552.10 | 38 | 40 | 213.80 |
+
+**M+1 Retention Rate**
+| month | active_customers | retained | retention_rate |
+|-------|------------------|----------|----------------|
+| 2018-02 | 32 | 3 | 9.38% |
+| 2018-03 | 38 | 5 | 13.16% |
+
+---
+
+## 📝 Documented Assumptions
+
+```sql
+-- Revenue = calculated at order_date (regardless of shipping)
+-- position_discount = multiplier 0–1 (0 = no discount)
+-- NULL in discount/price → treated as 0
+-- shipping_date < order_date → excluded from shipping metrics
+-- "New customer" = first order in that calendar month
