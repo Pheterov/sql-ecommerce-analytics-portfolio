@@ -46,9 +46,9 @@
 ## 🗄️ Schema (Simple View)
 orders ─┬── order_positions ─── products ─── product_groups
 <br>
-        ├── order_ratings
+                ├── order_ratings
 <br>
-        └── order_returns
+                └── order_returns
 
 
 <details>
