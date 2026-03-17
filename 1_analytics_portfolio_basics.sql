@@ -362,14 +362,14 @@ FROM customer_stats;
 /*===================================================================================================
 🔟 Month+1 Customer Retention Rate
 🎯 Goal: Calculate next-month retention
-🛠️ Stack: SQL (LEAD)
-📈 KPI: retention_rate_pct
+🛠️ Stack: SQL
 💡 Impact: Key loyalty metric
 📊 Example KPI:
-| Month   | Active Customers | Retained Customers | Retention % |
-|---------|-----------------|-----------------|-------------|
-| 2018-01 | 1,200           | 960             | 80.0        |
-| 2018-02 | 1,250           | 1,000           | 80.0        |
+| month   	 | active_customers | retained_customers | retention_rate_pct |
+|------------|------------------|--------------------|--------------------|
+| 2018-01-01 | 		          3 | 				   0 | 					0 |
+| 2018-02-01 |       		 32 | 		           3 | 				 9,38 |
+| 2018-03-01 |       		 38 | 		           5 | 				13,16 |
 ====================================================================================================*/
 WITH customer_month_activity AS (
 SELECT DISTINCT
