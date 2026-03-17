@@ -89,7 +89,7 @@ LIMIT 5;
 🛠️ Stack: SQL
 📈 KPI: avg_shipping_days
 💡 Impact: Baseline metric; informs process improvement
-📊 Example KPI: 4.5 days
+📊 Example KPI: 3,96 days
 ================================================================================*/
 SELECT
     ROUND(AVG(
