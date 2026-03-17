@@ -82,6 +82,12 @@ orders ─┬── order_positions ─── products ─── product_groups
 | 2018-02 | 32 | 3 | 9.38% |
 | 2018-03 | 38 | 5 | 13.16% |
 
+**Query 11 (Growth Attribution) reveals:**
+
+2018: 97%+ new customer revenue (acquisition phase)
+2019+: returning customers 15–40% (maturation)
+What this tells a business: Transition from acquisition to retention strategy needed.
+
 ---
 
 ## 📝 Documented Assumptions
