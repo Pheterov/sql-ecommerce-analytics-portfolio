@@ -76,7 +76,7 @@ orders ─┬── order_positions ─── products ─── product_groups
 | 2018-02 | 14,470.88 | 32 | 32 | 452.22 |
 | 2018-03 | 8,552.10 | 38 | 40 | 213.80 |
 
-**M+1 Retention Rate**
+**Query 10 M+1 Retention Rate**
 | month | active_customers | retained | retention_rate |
 |-------|------------------|----------|----------------|
 | 2018-02 | 32 | 3 | 9.38% |
