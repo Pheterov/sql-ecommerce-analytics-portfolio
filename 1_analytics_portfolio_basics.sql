@@ -6,6 +6,9 @@
 # 🔍 Focus: customer retention, revenue analysis, product & category performance
 #####################################################################################################
 
+""shipping_date validation applies only to shipping-time metrics;
+revenue is based on order_date regardless of shipping completeness.""
+
 /*===================================================================================================
 1️⃣ Monthly Business Performance Metrics
 🎯 Goal: Monthly KPIs for management
