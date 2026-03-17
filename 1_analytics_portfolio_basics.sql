@@ -59,8 +59,7 @@ ORDER BY total_units_sold DESC;
 /*================================================================================
 3️⃣ Top 5 Products by Sales Volume
 🎯 Goal: Highlight best-sellers for marketing & stock allocation
-🛠️ Stack: SQL (DENSE_RANK)
-📈 KPI: total_units_sold, sales_rank
+🛠️ Stack: SQL 
 💡 Impact: Prioritizes top performers to drive revenue
 📊 Example KPI:
 | Product Name          | Units Sold | Rank |
