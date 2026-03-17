@@ -8,7 +8,7 @@
 
 /*================================================================================
 1️⃣ Monthly Business Performance Metrics
-🎯 Goal: High-level monthly KPIs for management
+🎯 Goal: Monthly KPIs for management
 🛠️ Stack: SQL
 📈 Metrics: revenue, unique_customers, order_count, avg_order_value
 💡 Impact: Tracks trends, enables informed decision-making
