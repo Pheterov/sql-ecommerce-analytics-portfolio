@@ -64,13 +64,13 @@ ORDER BY total_units_sold DESC;
 📈 KPI: total_units_sold, sales_rank
 💡 Impact: Prioritizes top performers to drive revenue
 📊 Example KPI:
-| Product Name           | Units Sold | Rank |
+| Product Name          | Units Sold | Rank |
 |-----------------------|------------|------|
-| Wireless Headphones   | 2,350      | 1    |
-| Smartwatch            | 2,100      | 2    |
-| Gaming Mouse          | 1,980      | 3    |
-| Yoga Mat              | 1,700      | 4    |
-| Coffee Maker          | 1,650      | 5    |
+| Staples				|     215    |   1  |
+| Staple-envelope       |     170    |   2  |
+| Easy-staple-paper		|     150    |   3  |
+| Staples-in-misc.		|      86    |   4  |
+| Logitech P710e-Mobile |      75    |   5  |
 ================================================================================*/
 SELECT
     p.product_name
