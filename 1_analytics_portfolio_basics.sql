@@ -31,7 +31,7 @@ SELECT
     ,ROUND(
         SUM(op.item_quantity*COALESCE(p.product_price, 0)*
     	(1 - COALESCE(op.position_discount, 0))) / 
-        COUNT(DISTINCT op.order_id), 2)											avg_order_value
+        COUNT(DISTINCT o.order_id), 2)											avg_order_value
 FROM orders o
 JOIN order_positions op ON o.order_id = op.order_id
 JOIN products p ON op.product_id = p.product_id
@@ -352,7 +352,7 @@ WITH customer_stats AS
 (
 SELECT
 	o.customer_id
-	,COUNT(DISTINCT op.order_id) AS order_count
+	,COUNT(DISTINCT o.order_id) AS order_count
 	,SUM(op.item_quantity*COALESCE(p.product_price,0) * 
 		(1-COALESCE(op.position_discount,0)))									total_revenue
 FROM orders o
