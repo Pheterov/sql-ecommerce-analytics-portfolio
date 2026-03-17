@@ -190,8 +190,7 @@ ORDER BY product_category, shipping_type, discounted_flag DESC;
 /*===================================================================================================
 5️⃣ Monthly Top 3 Products by Revenue
 🎯 Goal: Track top-revenue products monthly
-🛠️ Stack: SQL (CTE + DENSE_RANK)
-📈 KPI: revenue, revenue_rank
+🛠️ Stack: SQL
 💡 Impact: Focuses attention on revenue drivers
 📊 Example KPI:
 | month   	 | product_name       |	revenue	  	  | revenue_rank |
@@ -258,7 +257,7 @@ ORDER BY total_revenue DESC;
 /*===================================================================================================
 7️⃣ Month-over-Month Revenue Growth
 🎯 Goal: Track revenue trends & growth patterns
-🛠️ Stack: SQL (LAG)
+🛠️ Stack: SQL
 💡 Impact: Insights into revenue fluctuations; informs strategy
 📊 Example KPI:
 | 	month	 |  revenue  | previous_month_revenue | revenue_change | revenue_change_pct |
@@ -296,7 +295,6 @@ ORDER BY month;
 8️⃣ New vs Returning Customer Analysis
 🎯 Goal: Analyze acquisition vs retention
 🛠️ Stack: SQL
-📈 KPI: new_customers, returning_customers
 💡 Impact: Tracks retention trends; informs engagement strategy
 📊 Example KPI:
 | month   	 | new_customers | returning_customers |
@@ -413,8 +411,7 @@ ORDER BY month;
 /*=============================================================================================================================
 1️⃣1️⃣ Growth Analysis: New vs Existing Customers
 🎯 Goal: Determine revenue growth drivers: new vs returning customers
-🛠️ Stack: SQL (CTE + window functions)
-📈 KPI: new_customer_revenue_pct, returning_customer_revenue_pct
+🛠️ Stack: SQL
 💡 Insight: 2018 = acquisition-focused, 2019+ = retention-driven
 📊 Example KPI:
 | month   	 | new_customer_revenue | returning_customer_revenue | new_customer_revenue_pct | returning_customer_revenue_pct |
