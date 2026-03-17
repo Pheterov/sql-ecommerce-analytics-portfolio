@@ -22,4 +22,4 @@
 ✅ Pareto Analysis (top 10% products contribution)  
 ✅ Discount Impact on Shipping & Revenue  
 
-Bottom line: If you need someone who writes SQL that answers business questions—not just joins tables—this is what that looks like.
+**Bottom line**: If you need someone who writes SQL that answers business questions—not just joins tables—this is what that looks like.
