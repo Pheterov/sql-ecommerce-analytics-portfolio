@@ -233,7 +233,7 @@ SELECT
 	o.customer_id
 	,o.order_id
 	,o.order_date
-	,SUM(op.item_quantity*COALESCE(p.product_price,0)*(1-COALESCE(op.position_discount,0))) 			revenue
+	,SUM(op.item_quantity*COALESCE(p.product_price,0)*(1-COALESCE(op.position_discount,0))) 						revenue
 FROM orders o
 JOIN order_positions op ON o.order_id = op.order_id
 JOIN products p ON op.product_id = p.product_id
@@ -245,7 +245,7 @@ SELECT
 	,ROUND(
 		SUM(revenue) OVER (
 		PARTITION BY customer_id
-ORDER BY order_date, order_id), 2)																	 	running_total_revenue
+ORDER BY order_date, order_id), 2)																	 				running_total_revenue
 FROM customer_orders
 ORDER BY customer_id, order_date, order_id;
 
@@ -258,9 +258,9 @@ ORDER BY customer_id, order_date, order_id;
 WITH monthly_metrics AS
 (
 SELECT
-	DATE_FORMAT(o.order_date, '%Y-%m-01')						 										month
-	,COUNT(DISTINCT op.order_id) 																		orders_cnt
-	,SUM(op.item_quantity*COALESCE(p.product_price,0)*(1-COALESCE(op.position_discount,0))) 			revenue
+	DATE_FORMAT(o.order_date, '%Y-%m-01')						 													month
+	,COUNT(DISTINCT op.order_id) 																					orders_cnt
+	,SUM(op.item_quantity*COALESCE(p.product_price,0)*(1-COALESCE(op.position_discount,0))) 						revenue
 FROM orders o
 JOIN order_positions op ON o.order_id = op.order_id
 JOIN products p ON op.product_id = p.product_id
@@ -270,7 +270,7 @@ GROUP BY month
 SELECT
 month
 	,revenue
-	,revenue / orders_cnt 																				AoV
+	,revenue / orders_cnt 																							AoV
 FROM monthly_metrics
 )
 SELECT
@@ -293,7 +293,7 @@ SELECT
 	pg.category
 	,op.product_id
 	,SUM(op.item_quantity*COALESCE(p.product_price,0)*
-	(1-COALESCE(op.position_discount,0))) 																revenue
+	(1-COALESCE(op.position_discount,0))) 																			revenue
 FROM orders o
 JOIN order_positions op ON o.order_id = op.order_id
 JOIN products p ON op.product_id = p.product_id
@@ -304,10 +304,10 @@ GROUP BY pg.category, op.product_id
 SELECT
 	category
 	,product_id
-	,ROUND(revenue, 2)																					revenue
+	,ROUND(revenue, 2)																								revenue
 	,DENSE_RANK() OVER (
 	PARTITION BY category
-ORDER BY revenue DESC) 																					ranking
+ORDER BY revenue DESC) 																								ranking
 FROM products_grouped
 )
 SELECT
@@ -328,9 +328,9 @@ ORDER BY category, ranking, revenue DESC;
 WITH customer_monthly_spending AS
 (
 SELECT
-	DATE_FORMAT(o.order_date, '%Y-%m-01') 																month
+	DATE_FORMAT(o.order_date, '%Y-%m-01') 																			month
 	,o.customer_id
-	,SUM(op.item_quantity*COALESCE(p.product_price,0)*(1-COALESCE(op.position_discount,0))) 			revenue
+	,SUM(op.item_quantity*COALESCE(p.product_price,0)*(1-COALESCE(op.position_discount,0))) 						revenue
 FROM orders o
 JOIN order_positions op ON o.order_id = op.order_id
 JOIN products p ON op.product_id = p.product_id
@@ -343,16 +343,16 @@ SELECT
 	,revenue
 	,LAG(month) OVER (
 	PARTITION BY customer_id
-	ORDER BY month) 																					prev_month
+	ORDER BY month) 																								prev_month
 	,LAG(revenue) OVER (
 	PARTITION BY customer_id
-	ORDER BY month) 																					prev_month_revenue
+	ORDER BY month) 																								prev_month_revenue
 FROM customer_monthly_spending
 )
 SELECT
 	customer_id
 	,month
-	,ROUND(revenue, 2) 																					current_month_revenue
+	,ROUND(revenue, 2) 																								current_month_revenue
 	,ROUND(prev_month_revenue, 2) prev_month_revenue
 FROM spending_with_prev
 WHERE prev_month = DATE_SUB(month, INTERVAL 1 MONTH) AND
@@ -379,8 +379,8 @@ SELECT
 	,customer_id
 	,LEAD(month) OVER (
 	PARTITION BY customer_id 
-	ORDER BY month) 																					next_order
-,DATE_ADD(month, INTERVAL 1 MONTH) 																		next_month
+	ORDER BY month) 																								next_order
+,DATE_ADD(month, INTERVAL 1 MONTH) 																					next_month
 FROM customers_month
 )
 SELECT
@@ -389,12 +389,12 @@ SELECT
 	,COUNT(CASE
 		WHEN next_order = next_month
 		THEN customer_id
-		END) 																							bought_next_month
+		END) 																										bought_next_month
 	,ROUND(COUNT(CASE
 		WHEN next_order = next_month
 		THEN customer_id
 	END) * 100.0 /
-	COUNT(customer_id), 2) 																				next_month_buyers_pct
+	COUNT(customer_id), 2) 																							next_month_buyers_pct
 FROM order_next
 GROUP BY month
 ORDER BY month;
@@ -410,23 +410,23 @@ WITH position_values AS
 SELECT
 	op.order_id
 	,op.item_quantity*COALESCE(p.product_price,0)*
-		(1-COALESCE(op.position_discount,0)) 															position_value
+		(1-COALESCE(op.position_discount,0)) 																		position_value
 	,(op.item_quantity*COALESCE(p.product_price,0)) -
 		(op.item_quantity*COALESCE(p.product_price,0)*
-		(1-COALESCE(op.position_discount,0))) 															discount_value
+		(1-COALESCE(op.position_discount,0))) 																		discount_value
 FROM order_positions op
 JOIN products p ON op.product_id = p.product_id
 ), order_flags AS
 (
 SELECT
 	order_id
-	,SUM(position_value) 																				order_value
-	,SUM(discount_value) 																				total_discount_value
+	,SUM(position_value) 																							order_value
+	,SUM(discount_value) 																							total_discount_value
 	,CASE
 		WHEN SUM(discount_value) > 0
 		THEN 1
 		ELSE 0
-	END																									discounted_order
+	END																												discounted_order
 FROM position_values
 GROUP BY order_id
 )
@@ -434,11 +434,11 @@ SELECT
 	ROUND(AVG(CASE
 		WHEN discounted_order = 1
 		THEN order_value
-	END), 2) 																							avg_discounted_order_value
+	END), 2) 																										avg_discounted_order_value
 	,ROUND(AVG(CASE
 		WHEN discounted_order = 0
 		THEN order_value
-	END), 2) 																							avg_non_discounted_order_value
+	END), 2) 																										avg_non_discounted_order_value
 	,ROUND(AVG(CASE
 		WHEN discounted_order = 1
 		THEN order_value 
@@ -446,7 +446,7 @@ SELECT
 	AVG(CASE
 	WHEN discounted_order = 0
 	THEN order_value 
-	END), 2) 																							avg_order_value_diff
+	END), 2) 																										avg_order_value_diff
 FROM order_flags;
 
 /*===================================================================================================
@@ -460,7 +460,7 @@ WITH customer_revenue_totals AS
 SELECT
 	o.customer_id
 	,SUM(op.item_quantity*COALESCE(p.product_price,0)*
-		(1-COALESCE(op.position_discount,0))) 															revenue
+		(1-COALESCE(op.position_discount,0))) 																		revenue
 FROM orders o
 JOIN order_positions op ON o.order_id = op.order_id
 JOIN products p ON op.product_id = p.product_id
@@ -471,7 +471,7 @@ SELECT
 	customer_id
 	,revenue
 	,NTILE(5) OVER (
-		ORDER BY revenue DESC) 																			percentile_group
+		ORDER BY revenue DESC) 																						percentile_group
 FROM customer_revenue_totals
 ), customer_segment_revenue AS
 (
@@ -484,12 +484,12 @@ SELECT
 		WHEN percentile_group = 2
 		THEN 'Medium Value'
 		ELSE 'Low Value'
-	END 																								segment
+	END 																											segment
 FROM customer_segments
 )
 SELECT
 	segment
-	,ROUND(SUM(revenue), 2) 																			segment_revenue
+	,ROUND(SUM(revenue), 2) 																						segment_revenue
 FROM customer_segment_revenue
 GROUP BY segment
 ORDER BY segment_revenue DESC;
