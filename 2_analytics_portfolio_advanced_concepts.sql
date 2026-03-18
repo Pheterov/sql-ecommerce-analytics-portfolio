@@ -282,7 +282,7 @@ FROM monthly_averages
 ORDER BY month;
 
 /*===================================================================================================
- Top 2 Products by Revenue within Each Category
+5️⃣ Top 2 Products by Revenue within Each Category
 🎯 Goal: Identify best-performing products per category
 🛠️ Stack: SQL
 💡 Impact: Guides product placement and promotion strategies
