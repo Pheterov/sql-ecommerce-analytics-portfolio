@@ -51,7 +51,7 @@ JOIN products p ON op.product_id = p.product_id
 GROUP BY o.delivery_state
 ORDER BY revenue DESC;
 
-/*=================================================================================================================================================================================================
+/*================================================================================================================================================================================================
 🎯 Goal: Show difference between baseline metric vs enhanced insight.
 		  Benchmark delivery_state across revenue, customer value and purchasing behavior to support
           data-driven regional prioritization.
