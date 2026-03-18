@@ -72,11 +72,12 @@ orders ─┬── order_positions ─── products ─── product_groups
 | top_10pct_revenue | total_revenue | top_10pct_revenue_pct |
 |-------------------|---------------|-----------------------|
 |    1 348 957,66   |  2 268 169,36 |                 59,47 |
-
+<br>
 
 💡 Key Insight:
 Top 10% of customers generate nearly 60% of total revenue, highlighting the critical importance of retaining high-value clients for sustained business growth.
 
+---
 
 **Monthly Revenue Breakdown: New vs Returning Customers**  
 |       month      | new_customer_revenue | returning_customer_revenue | new_customer_revenue_pct | returning_customer_revenue_pct |
