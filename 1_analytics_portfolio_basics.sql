@@ -31,7 +31,7 @@ These are conscious tradeoffs for readability and portfolio clarity:
 
 /*===================================================================================================
 1️⃣ Monthly Business Performance Metrics
-🎯 Goal: Monthly KPIs for management
+🎯 Goal: Monthly KPIs for management.
 🛠️ Stack: SQL
 💡 Impact: Shows revenue, orders, and customer trends each month.
 📊 Example KPI:
@@ -60,10 +60,9 @@ ORDER BY month;
 
 /*===================================================================================================
 2️⃣ Product Category Performance (Units Sold)
-🎯 Goal: Identify top-selling product categories
+🎯 Goal: Identify top-selling product categories.
 🛠️ Stack: SQL
-📈 KPI: total_units_sold per category
-💡 Impact: Helps plan inventory and focus on the categories that matter most
+💡 Impact: Helps plan inventory and focus on the categories that matter most.
 📊 Example KPI:
 | category     	  | total_units_sold |
 |-----------------|------------------|
@@ -82,12 +81,12 @@ GROUP BY pg.category
 ORDER BY total_units_sold DESC;
 
 /*======================================================================================================
-# 🎯 Goal: Show how simple totals hide trends
+# 🎯 Goal: Show how simple totals hide trends.
 # 🛠️ Stack: SQL
 # 💡 Business Insight:
-#    - Just looking at total units alone hides trends
-#    - Checking month-over-month numbers (both absolute and percentage changes) makes it clear which categories are growing or shrinking
-#    - Negative changes stand out so you can spot declining performance quickly
+#    - Just looking at total units alone hides trends.
+#    - Checking month-over-month numbers (both absolute and percentage changes) makes it clear which categories are growing or shrinking.
+#    - Negative changes stand out so you can spot declining performance quickly.
 📊 Example KPI:
 | month				| product_category		      | total_units_sold | units_change | units_change_pct |
 |-------------------|-----------------------------|------------------|--------------|------------------|
@@ -127,9 +126,9 @@ ORDER BY product_category, month;
 
 /*===================================================================================================
 3️⃣ Top 5 Products by Sales Volume
-🎯 Goal: Spot the best-sellers so marketing and stock focus on what really drives revenue
+🎯 Goal: Spot the best-sellers so marketing and stock focus on what really drives revenue.
 🛠️ Stack: SQL 
-💡 Impact: Prioritizes top performers to drive revenue
+💡 Impact: Prioritizes top performers to drive revenue.
 📊 Example KPI:
 | product_name          | total_units_sold | sales_rank |
 |-----------------------|------------------|------------|
@@ -153,9 +152,9 @@ LIMIT 5;
 
 /*===================================================================================================
 4️⃣ Average Shipping Time Analysis
-🎯 Goal: Measure operational efficiency
+🎯 Goal: Check how fast orders are delivered to identify efficiency gaps.
 🛠️ Stack: SQL
-💡 Impact: Baseline metric
+💡 Impact: Baseline metric.
 📊 Example KPI:
 | avg_shipping_days |
 |-------------------|
