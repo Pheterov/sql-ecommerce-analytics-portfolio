@@ -40,7 +40,7 @@ These are conscious tradeoffs for readability and portfolio clarity:
 | California 	 | 451 450,55 | 	  1 021 |
 | New York		 | 312 376,98 | 		562 |
 | Texas			 | 164 948,68 | 		487 |
-==================================================================================================================================================================================================*/
+=====================================================================================================*/
 SELECT
 	o.delivery_state
 	,ROUND(SUM(op.item_quantity*COALESCE(p.product_price,0)*(1-COALESCE(op.position_discount,0))), 2) 	revenue
@@ -51,7 +51,7 @@ JOIN products p ON op.product_id = p.product_id
 GROUP BY o.delivery_state
 ORDER BY revenue DESC;
 
-/*===================================================================================================
+/*=================================================================================================================================================================================================
 🎯 Goal: Show difference between baseline metric vs enhanced insight.
 		  Benchmark delivery_state across revenue, customer value and purchasing behavior to support
           data-driven regional prioritization.
