@@ -222,31 +222,6 @@ WHERE revenue_ranking <= 5
 ORDER BY revenue_ranking;
 
 /*===================================================================================================
-3️⃣ Top Category by Units Sold in 2019
-🎯 Goal: Identify best-performing category for inventory planning
-🛠️ Stack: SQL
-💡 Impact: Guides procurement and marketing focus
-====================================================================================================*/
-WITH year_sales AS
-(
-SELECT
-	pg.category
-	,SUM(op.item_quantity) 																				items_sold
-FROM order_positions op
-JOIN orders o ON op.order_id = o.order_id
-JOIN products p ON op.product_id = p.product_id
-JOIN product_groups pg ON p.group_id = pg.group_id
-WHERE EXTRACT(YEAR FROM o.order_date) = 2019
-GROUP BY pg.category
-)
-SELECT
-	category
-	,items_sold
-FROM year_sales
-ORDER BY items_sold DESC
-LIMIT 1;
-
-/*===================================================================================================
 3️⃣ Running Total Revenue per Customer
 🎯 Goal: Track cumulative customer spending over time
 🛠️ Stack: SQL
