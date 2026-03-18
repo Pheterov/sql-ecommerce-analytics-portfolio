@@ -25,7 +25,6 @@
 | <p align="center">💰<br>Revenue Performance</p> | Top 10% customers generate ~60% of revenue. | Retaining top customers is key to growth. |
 | <p align="center">👥<br>Customer Retention(M+1)</p> | New customers drive initial revenue; returning customers’ share grows over time | Focus on keeping customers, not just acquiring new ones. |
 | <p align="center">🚚<br>Delivery Efficiency</p>  | ~15% of orders are consistently delayed | Look into logistics bottlenecks to improve delivery. |
-| <p align="center">🎯<br>Discount Impact</p>| Discounts affect revenue and delivery times | Adjust pricing and promotions |
 
 &nbsp;
 
