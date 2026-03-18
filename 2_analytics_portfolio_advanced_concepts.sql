@@ -314,7 +314,7 @@ which may indicate reliance on discounts or lower-value transactions to drive vo
 WITH local_sales AS
 (
 SELECT
-	o.delivery_city                                																	delivery_city
+	o.delivery_city																									delivery_city
 	,SUM(CASE 
 			WHEN EXTRACT(YEAR FROM o.order_date) = 2019 
 			THEN op.item_quantity*COALESCE(p.product_price, 0)*
@@ -328,32 +328,6 @@ SELECT
 			ELSE 0
 		END) 										 																revenue_2018
 	,COUNT(DISTINCT CASE
-		WHEN EXTRACT(YEAR FROM o.order_date) = 2019 
-		THEN o.order_id
-		END) 																										orders_cnt_2019
-	,ROUND(SUM(CASE
-		WHEN EXTRACT(YEAR FROM o.order_date) = 2019 
-		THEN op.item_quantity*COALESCE(p.product_price, 0)*
-			(1-COALESCE(op.position_discount,0))
-		ELSE 0
-		END) * 1.0 / 
-		NULLIF(
-			COUNT(DISTINCT CASE
-					WHEN EXTRACT(YEAR FROM o.order_date) = 2019 
-					THEN o.order_id
-		END),0), 2) 																								avg_order_value_2019
-	,ROUND(SUM(CASE
-		WHEN EXTRACT(YEAR FROM o.order_date) = 2018 
-		THEN op.item_quantity*COALESCE(p.product_price, 0)*
-			(1-COALESCE(op.position_discount,0))
-		ELSE 0
-		END) * 1.0 / 
-		NULLIF(
-			COUNT(DISTINCT CASE
-					WHEN EXTRACT(YEAR FROM o.order_date) = 2018 
-					THEN o.order_id
-		END),0), 2) 																								avg_order_value_2018
-	,COUNT(DISTINCT CASE
 			WHEN EXTRACT(YEAR FROM o.order_date) = 2019 
 			THEN o.customer_id 
 		END) 																										unique_customers_2019
@@ -361,6 +335,28 @@ SELECT
 			WHEN EXTRACT(YEAR FROM o.order_date) = 2018 
 			THEN o.customer_id 
 		END) 																										unique_customers_2018
+	,SUM(CASE
+			WHEN EXTRACT(YEAR FROM o.order_date) = 2019 
+			THEN op.item_quantity*COALESCE(p.product_price, 0)*
+				(1-COALESCE(op.position_discount,0))
+			ELSE 0
+		END) * 1.0 / 
+		NULLIF(
+			COUNT(DISTINCT CASE
+					WHEN EXTRACT(YEAR FROM o.order_date) = 2019 
+					THEN o.order_id
+		END),0) 																									avg_order_value_2019
+	,SUM(CASE
+			WHEN EXTRACT(YEAR FROM o.order_date) = 2018 
+			THEN op.item_quantity*COALESCE(p.product_price, 0)*
+				(1-COALESCE(op.position_discount,0))
+			ELSE 0
+		END) * 1.0 / 
+		NULLIF(
+			COUNT(DISTINCT CASE
+					WHEN EXTRACT(YEAR FROM o.order_date) = 2018 
+					THEN o.order_id
+		END),0) 																									avg_order_value_2018
 FROM order_positions op
 JOIN orders o ON op.order_id = o.order_id
 JOIN products p ON op.product_id = p.product_id
@@ -378,11 +374,11 @@ SELECT
 	,unique_customers_2019
 	,unique_customers_2018
 	,unique_customers_2019 - unique_customers_2018																	customers_diff
-	,avg_order_value_2019
-	,avg_order_value_2018
-	,avg_order_value_2019 - avg_order_value_2018																	avg_order_value_diff
+	,ROUND(avg_order_value_2019, 2)																					avg_order_value_2019
+	,ROUND(avg_order_value_2018, 2)																					avg_order_value_2018
+	,ROUND(avg_order_value_2019 - avg_order_value_2018, 2)															avg_order_value_diff
 	,ROUND((avg_order_value_2019 - avg_order_value_2018) /
-		avg_order_value_2018*100.0, 2)																				avg_order_value_pct_diff
+		NULLIF(avg_order_value_2018, 0)*100.0, 2)																	avg_order_value_pct_diff
 FROM local_sales
 ORDER BY revenue_2019 DESC;
 
