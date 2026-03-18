@@ -29,10 +29,6 @@
 
 &nbsp;
 
-Each insight highlights a measurable business opportunity based on real e-commerce data.
-
-&nbsp;
-
 ## 🔧 Tech Stack & Skills
 
 ![MySQL](https://img.shields.io/badge/MySQL-8.0+-4479A1?logo=mysql&logoColor=white)  
