@@ -83,6 +83,9 @@ orders ─┬── order_positions ─── products ─── product_groups
 |-------|----------------|----------|----------------|
 | 2018-02 | 32 | 3 | 9.38% |
 | 2018-03 | 38 | 5 | 13.16% |
+| 2018-04 | 63 | 4 | 6.35% |
+| 2018-05 | 67 | 7 | 10.45% |
+| 2018-06 | 67 | 6 | 8.96% |
 
 Early stage: heavy acquisition → later stage: focus on returning customer revenue (15–40%)
 
