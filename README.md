@@ -24,8 +24,8 @@
 |-------|---------|-----------------|
 | <p align="center">💰<br>Revenue Performance</p> | Top 10% products generate ~60% of revenue | Focus marketing & inventory on high-impact products |
 | <p align="center">👥<br>Customer Retention(M+1)</p> </center> | M+1 retention: 9–13% early, 15–40% later | Shift from acquisition-heavy to retention strategy |
-| <p align="center">🚚Delivery Efficiency</p>  | ~15% orders consistently delayed | Potential logistics bottlenecks |
-| <p align="center">🎯Discount Impact</p>| Correlation with revenue & shipping delays | Informs promotion & pricing strategy |
+| <p align="center">🚚<br>Delivery Efficiency</p>  | ~15% orders consistently delayed | Potential logistics bottlenecks |
+| <p align="center">🎯<br>Discount Impact</p>| Correlation with revenue & shipping delays | Informs promotion & pricing strategy |
 <br>
 Each insight highlights a measurable business opportunity based on real e-commerce data.
 
