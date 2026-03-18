@@ -33,7 +33,7 @@ These are conscious tradeoffs for readability and portfolio clarity:
 1️⃣ Monthly Business Performance Metrics
 🎯 Goal: Monthly KPIs for management
 🛠️ Stack: SQL
-💡 Impact: Tracks trends, enables informed decision-making
+💡 Impact: Shows revenue, orders, and customer trends each month.
 📊 Example KPI:
 | month      | revenue   | unique_customers  | orders_count | avg_order_value |
 |------------|-----------|-------------------|--------------|-----------------|
