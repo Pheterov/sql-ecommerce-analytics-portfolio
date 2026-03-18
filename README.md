@@ -83,7 +83,7 @@ Top 10% of customers generate nearly 60% of total revenue, highlighting the crit
 
 **Monthly Revenue Breakdown: New vs Returning Customers**  
 
-*Dates are shown as MM-YY fo compactness.*
+*Dates are shown as MM-YY for compactness.*
 
 | month       | new_customer_revenue | returning_customer_revenue | new_revenue_pct | returning_revenue_pct |
 |------------|----------------------|----------------------------|----------------|----------------------|
