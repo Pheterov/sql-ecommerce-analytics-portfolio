@@ -167,11 +167,11 @@ FROM orders o
 WHERE o.shipping_date >= o.order_date;
 
 /*============================================================================================================================================
-🎯 Goal: Show difference between baseline metric vs enhanced insight
+🎯 Goal: Compare standard shipping times with more detailed breakdowns.
 🛠️ Stack: SQL
 💡 Business Insight:
-   - Baseline avg shipping time is not enough; comparing Discounted orders vs Full Price orders is a bare minimum
-   - Enables management to assess whether promotions affect fulfillment
+   - Simply looking at average shipping time doesn’t tell the full story. Breaking it down by Discounted vs Full Price orders shows how promotions might impact fulfillment.
+   - Helps management spot potential delays caused by special pricing or promotions.
    - Note: database is a modified Supersales by KajoData; 
      some results (e.g., Furniture, First Class) reflect dataset structure, not real-world logistics
 📊 Example KPI:
