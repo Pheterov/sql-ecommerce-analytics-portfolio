@@ -43,8 +43,8 @@ These are conscious tradeoffs for readability and portfolio clarity:
 =====================================================================================================*/
 SELECT
 	o.delivery_state
-	,ROUND(SUM(op.item_quantity*COALESCE(p.product_price,0)*(1-COALESCE(op.position_discount,0))), 2) 	revenue
-	,COUNT(DISTINCT op.order_id)																		orders_cnt
+	,ROUND(SUM(op.item_quantity*COALESCE(p.product_price,0)*(1-COALESCE(op.position_discount,0))), 2) 				revenue
+	,COUNT(DISTINCT op.order_id)																					orders_cnt
 FROM orders o
 JOIN order_positions op ON o.order_id = op.order_id
 JOIN products p ON op.product_id = p.product_id
