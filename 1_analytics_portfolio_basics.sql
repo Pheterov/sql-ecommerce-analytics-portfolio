@@ -175,7 +175,7 @@ WHERE o.shipping_date >= o.order_date;
    - Note: database is a modified Supersales by KajoData; 
      some results (e.g., Furniture, First Class) reflect dataset structure, not real-world logistics
 📊 Example KPI:
-| product_category       | shipping_type    | discounted_flag | avg_shipping_days | min_shipping_days | max_shipping_days | orders_count |
+| product_category       | shipping_mode    | discounted_flag | avg_shipping_days | min_shipping_days | max_shipping_days | orders_count |
 |------------------------|------------------|-----------------|-------------------|-------------------|-------------------|--------------|
 | Furniture				 | Standard Class	| Full Price	  |				 5,06 |					4 |					7 |			 445 |
 | Furniture				 | Standard Class	| Discounted	  |				 4,92 |					3 |					7 |		 	 626 |
@@ -185,7 +185,7 @@ WHERE o.shipping_date >= o.order_date;
 
 SELECT
     pg.category                                          						product_category
-    ,o.shipping_mode                                      						shipping_type
+    ,o.shipping_mode                                      						shipping_mode
     ,CASE 
         WHEN COALESCE(op.position_discount, 0) > 0 
 		THEN 'Discounted' 
@@ -216,14 +216,14 @@ ORDER BY product_category, shipping_type, discounted_flag DESC;
 🛠️ Stack: SQL
 💡 Impact: Identify top-revenue products to guide marketing and inventory decisions.
 📊 Example KPI:
-| month   	 | product_name       |	revenue	  	  | revenue_rank |
-|------------|--------------------|---------------|--------------|
-| 2018-01-01 | SAFCO-Boltless     |    	   272,74 |		  	   1 |
-| 2018-01-01 | Avery-Hi-Liter     |     	19,54 | 	  	   2 |
-| 2018-01-01 | Message-Book       |     	16,45 |		  	   3 |
-| 2018-02-01 | Global-Deluxe      |   	 2 573,82 |		  	   1 |
-| 2018-02-01 | Tennsco6--and-18   |   	 1 325,85 | 	  	   2 |
-| 2018-02-01 | Hon-4700-Series    |   	 1 067,94 |		  	   3 |
+| month   	 | product_name       |	revenue	  	  | ranking |
+|------------|--------------------|---------------|---------|
+| 2018-01-01 | SAFCO-Boltless     |    	   272,74 |		  1 |
+| 2018-01-01 | Avery-Hi-Liter     |     	19,54 | 	  2 |
+| 2018-01-01 | Message-Book       |     	16,45 |		  3 |
+| 2018-02-01 | Global-Deluxe      |   	 2 573,82 |	      1 |
+| 2018-02-01 | Tennsco6--and-18   |   	 1 325,85 |       2 |
+| 2018-02-01 | Hon-4700-Series    |   	 1 067,94 |	      3 |
 ====================================================================================================*/
 
 WITH monthly_product_revenue AS 
@@ -236,7 +236,7 @@ SELECT
 	,DENSE_RANK() OVER (
 		PARTITION BY DATE_FORMAT(o.order_date, '%Y-%m-01')
 		ORDER BY SUM(op.item_quantity*COALESCE(p.product_price, 0)*
-    	(1 - COALESCE(op.position_discount, 0))) DESC)							revenue_rank
+    	(1 - COALESCE(op.position_discount, 0))) DESC)							ranking
 FROM orders o
 JOIN order_positions op ON o.order_id = op.order_id
 JOIN products p ON op.product_id = p.product_id
@@ -246,7 +246,7 @@ SELECT
     month
     ,product_name
     ,ROUND(revenue, 2)															revenue
-    ,revenue_rank
+    ,ranking
 FROM monthly_product_revenue
 WHERE revenue_rank <= 3
 ORDER BY month, revenue_rank;
@@ -257,11 +257,11 @@ ORDER BY month, revenue_rank;
 🛠️ Stack: SQL
 💡 Impact: Shows who your top customers are; enables targeted loyalty campaigns.
 📊 Example KPI:
-| customer_id | total_revenue | Rank |
-|-------------|---------------|------|
-| 	  	  764 |	 	19 265,82 |    1 |
-| 	  	  644 |   	15 117,34 |    2 |
-| 	   	   29 |   	14 602,49 |    3 |
+| customer_id | total_revenue | ranking |
+|-------------|---------------|---------|
+| 	  	  764 |	 	19 265,82 |    	  1 |
+| 	  	  644 |   	15 117,34 |    	  2 |
+| 	   	   29 |   	14 602,49 |    	  3 |
 ====================================================================================================*/
 
 SELECT
@@ -270,7 +270,7 @@ SELECT
     	(1 - COALESCE(op.position_discount, 0))), 2) 							total_revenue
     ,DENSE_RANK() OVER (
         ORDER BY SUM(op.item_quantity*COALESCE(p.product_price, 0)*
-    	(1 - COALESCE(op.position_discount, 0))) DESC) 							revenue_rank
+    	(1 - COALESCE(op.position_discount, 0))) DESC) 							ranking
 FROM orders o
 JOIN order_positions op ON o.order_id = op.order_id
 JOIN products p ON op.product_id = p.product_id
