@@ -316,9 +316,9 @@ ORDER BY month;
 
 /*===================================================================================================
 8️⃣ New vs Returning Customer Analysis
-🎯 Goal: Analyze acquisition vs retention
+🎯 Goal: Compare new customers to returning ones
 🛠️ Stack: SQL
-💡 Impact: Tracks retention trends; informs engagement strategy
+💡 Impact: Shows whether we’re keeping customers or just gaining new ones, guiding retention efforts
 📊 Example KPI:
 | month   	 | new_customers | returning_customers |
 |------------|---------------|---------------------|
