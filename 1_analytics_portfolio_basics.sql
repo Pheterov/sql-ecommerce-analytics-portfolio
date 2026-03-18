@@ -253,9 +253,9 @@ ORDER BY month, revenue_rank;
 
 /*===================================================================================================
 6️⃣ Customer Revenue Ranking
-🎯 Goal: Segment customers by total lifetime revenue
+🎯 Goal: Rank customers by their total lifetime spending.
 🛠️ Stack: SQL
-💡 Impact: Identifies top contributors; enables targeted loyalty campaigns
+💡 Impact: Shows who your top customers are; enables targeted loyalty campaigns.
 📊 Example KPI:
 | customer_id | total_revenue | Rank |
 |-------------|---------------|------|
