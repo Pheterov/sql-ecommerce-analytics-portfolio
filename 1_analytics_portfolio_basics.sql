@@ -279,9 +279,9 @@ ORDER BY total_revenue DESC;
 
 /*===================================================================================================
 7️⃣ Month-over-Month Revenue Growth
-🎯 Goal: Track revenue trends & growth patterns
+🎯 Goal: Track how revenue changes from month to month
 🛠️ Stack: SQL
-💡 Impact: Insights into revenue fluctuations; informs strategy
+💡 Impact: Shows which months grow or shrink, helping plan actions and priorities
 📊 Example KPI:
 | 	month	 |  revenue  | previous_month_revenue | revenue_change | revenue_change_pct |
 |------------|-----------|------------------------|----------------|--------------------|
