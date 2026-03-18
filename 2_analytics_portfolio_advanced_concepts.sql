@@ -238,7 +238,7 @@ GROUP BY o.shipping_mode
 ORDER BY avg_delivery_time;
 
 /*===================================================================================================
-3️⃣4️⃣ Top Category by Units Sold in 2019
+4️⃣ Top Category by Units Sold in 2019
 🎯 Goal: Identify best-performing category for inventory planning
 🛠️ Stack: SQL
 💡 Impact: Guides procurement and marketing focus
@@ -263,7 +263,7 @@ ORDER BY items_sold DESC
 LIMIT 1;
 
 /*===================================================================================================
-4️⃣5️⃣ Running Total Revenue per Customer
+5️⃣ Running Total Revenue per Customer
 🎯 Goal: Track cumulative customer spending over time
 🛠️ Stack: SQL
 💡 Impact: Identifies high-value customers for retention programs
@@ -291,7 +291,7 @@ FROM customer_orders
 ORDER BY customer_id, order_date, order_id;
 
 /*===================================================================================================
-5️⃣6️⃣ Month-over-Month AOV Change
+6️⃣ Month-over-Month AOV Change
 🎯 Goal: Measure average order value trends
 🛠️ Stack: SQL
 💡 Impact: Identifies pricing strategy effectiveness
@@ -323,7 +323,7 @@ FROM monthly_averages
 ORDER BY month;
 
 /*===================================================================================================
-6️⃣7️⃣ Top 2 Products by Revenue within Each Category
+7️⃣ Top 2 Products by Revenue within Each Category
 🎯 Goal: Identify best-performing products per category
 🛠️ Stack: SQL
 💡 Impact: Guides product placement and promotion strategies
@@ -361,7 +361,7 @@ WHERE ranking <= 2
 ORDER BY category, ranking, revenue DESC;
 
 /*===================================================================================================
-7️⃣8️⃣ Customers Spending More Than in Previous Month
+8️⃣ Customers Spending More Than in Previous Month
 🎯 Goal: Identify customers with increasing spend patterns
 🛠️ Stack: SQL
 💡 Impact: Targets customers for upsell opportunities
@@ -401,7 +401,7 @@ WHERE prev_month = DATE_SUB(month, INTERVAL 1 MONTH) AND
 ORDER BY customer_id, month;
 
 /*===================================================================================================
-8️⃣9️⃣ Month+1 Purchase Return Rate
+9️⃣ Month+1 Purchase Return Rate
 🎯 Goal: Measure customer retention month-over-month
 🛠️ Stack: SQL
 💡 Impact: Evaluates loyalty program effectiveness
@@ -441,7 +441,7 @@ GROUP BY month
 ORDER BY month;
 
 /*===================================================================================================
-9️⃣🔟 Discount Effectiveness Analysis
+🔟 Discount Effectiveness Analysis
 🎯 Goal: Evaluate impact of discounts on order value
 🛠️ Stack: SQL
 💡 Impact: Informs discount strategy optimization
@@ -492,319 +492,6 @@ FROM order_flags;
 
 /*===================================================================================================
 1️⃣1️⃣ Customer Value Segmentation with NTILE
-🎯 Goal: Segment customers by lifetime value
-🛠️ Stack: SQL
-💡 Impact: Enables targeted marketing strategies
-====================================================================================================*/
-WITH customer_revenue_totals AS
-(
-SELECT
-	o.customer_id
-	,SUM(op.item_quantity*COALESCE(p.product_price,0)*
-		(1-COALESCE(op.position_discount,0))) 															revenue
-FROM orders o
-JOIN order_positions op ON o.order_id = op.order_id
-JOIN products p ON op.product_id = p.product_id
-GROUP BY o.customer_id
-), customer_segments AS
-(
-SELECT
-	customer_id
-	,revenue
-	,NTILE(5) OVER (
-		ORDER BY revenue DESC) 																			percentile_group
-FROM customer_revenue_totals
-), customer_segment_revenue AS
-(
-SELECT
-	customer_id
-	,revenue
-	,CASE
-		WHEN percentile_group = 1
-		THEN 'High Value'
-		WHEN percentile_group = 2
-		THEN 'Medium Value'
-		ELSE 'Low Value'
-	END 																								segment
-FROM customer_segments
-)
-SELECT
-	segment
-	,ROUND(SUM(revenue), 2) 																			segment_revenue
-FROM customer_segment_revenue
-GROUP BY segment
-ORDER BY segment_revenue DESC;
-
-/*===================================================================================================
-2️⃣ Top 5 Cities by Units Sold
-🎯 Goal: Identify high-volume cities for logistics optimization
-🛠️ Stack: SQL
-💡 Impact: Prioritizes warehouse locations and delivery routes
-====================================================================================================*/
-SELECT
-	o.delivery_city
-	,SUM(op.item_quantity) 																				items_sold
-FROM orders o
-JOIN order_positions op ON o.order_id = op.order_id
-GROUP BY o.delivery_city
-ORDER BY items_sold DESC
-LIMIT 5;
-
-/*===================================================================================================
-3️⃣ Top Category by Units Sold in 2019
-🎯 Goal: Identify best-performing category for inventory planning
-🛠️ Stack: SQL
-💡 Impact: Guides procurement and marketing focus
-====================================================================================================*/
-WITH year_sales AS
-(
-SELECT
-	pg.category
-	,SUM(op.item_quantity) 																				items_sold
-FROM order_positions op
-JOIN orders o ON op.order_id = o.order_id
-JOIN products p ON op.product_id = p.product_id
-JOIN product_groups pg ON p.group_id = pg.group_id
-WHERE EXTRACT(YEAR FROM o.order_date) = 2019
-GROUP BY pg.category
-)
-SELECT
-	category
-	,items_sold
-FROM year_sales
-ORDER BY items_sold DESC
-LIMIT 1;
-
-/*===================================================================================================
-4️⃣ Running Total Revenue per Customer
-🎯 Goal: Track cumulative customer spending over time
-🛠️ Stack: SQL
-💡 Impact: Identifies high-value customers for retention programs
-====================================================================================================*/
-WITH customer_orders AS
-(
-SELECT
-	o.customer_id
-	,o.order_id
-	,o.order_date
-	,SUM(op.item_quantity*COALESCE(p.product_price,0)*(1-COALESCE(op.position_discount,0))) 			revenue
-FROM orders o
-JOIN order_positions op ON o.order_id = op.order_id
-JOIN products p ON op.product_id = p.product_id
-GROUP BY o.customer_id, o.order_id, o.order_date
-)
-SELECT
-	customer_id
-	,order_date
-	,ROUND(
-		SUM(revenue) OVER (
-		PARTITION BY customer_id
-ORDER BY order_date, order_id), 2)																	 	running_total_revenue
-FROM customer_orders
-ORDER BY customer_id, order_date, order_id;
-
-/*===================================================================================================
-5️⃣ Month-over-Month AOV Change
-🎯 Goal: Measure average order value trends
-🛠️ Stack: SQL
-💡 Impact: Identifies pricing strategy effectiveness
-====================================================================================================*/
-WITH monthly_metrics AS
-(
-SELECT
-	DATE_FORMAT(o.order_date, '%Y-%m-01')						 										month
-	,COUNT(DISTINCT op.order_id) 																		orders_cnt
-	,SUM(op.item_quantity*COALESCE(p.product_price,0)*(1-COALESCE(op.position_discount,0))) 			revenue
-FROM orders o
-JOIN order_positions op ON o.order_id = op.order_id
-JOIN products p ON op.product_id = p.product_id
-GROUP BY month
-), monthly_averages AS
-(
-SELECT
-month
-	,revenue
-	,revenue / orders_cnt 																				AoV
-FROM monthly_metrics
-)
-SELECT
-	month
-	,ROUND(
-		(AoV - LAG(AoV) OVER (ORDER BY month)) * 100.0 /
-		NULLIF(LAG(AoV) OVER (ORDER BY month),0), 2) AoV_pct_change_vs_previous_month
-FROM monthly_averages
-ORDER BY month;
-
-/*===================================================================================================
-6️⃣ Top 2 Products by Revenue within Each Category
-🎯 Goal: Identify best-performing products per category
-🛠️ Stack: SQL
-💡 Impact: Guides product placement and promotion strategies
-====================================================================================================*/
-WITH products_grouped AS
-(
-SELECT
-	pg.category
-	,op.product_id
-	,SUM(op.item_quantity*COALESCE(p.product_price,0)*
-	(1-COALESCE(op.position_discount,0))) 																revenue
-FROM orders o
-JOIN order_positions op ON o.order_id = op.order_id
-JOIN products p ON op.product_id = p.product_id
-JOIN product_groups pg ON p.group_id = pg.group_id
-GROUP BY pg.category, op.product_id
-), products_ranking AS
-(
-SELECT
-	category
-	,product_id
-	,ROUND(revenue, 2)																					revenue
-	,DENSE_RANK() OVER (
-	PARTITION BY category
-ORDER BY revenue DESC) 																					ranking
-FROM products_grouped
-)
-SELECT
-	category
-	,product_id
-	,revenue
-	,ranking
-FROM products_ranking
-WHERE ranking <= 2
-ORDER BY category, ranking, revenue DESC;
-
-/*===================================================================================================
-7️⃣ Customers Spending More Than in Previous Month
-🎯 Goal: Identify customers with increasing spend patterns
-🛠️ Stack: SQL
-💡 Impact: Targets customers for upsell opportunities
-====================================================================================================*/
-WITH customer_monthly_spending AS
-(
-SELECT
-	DATE_FORMAT(o.order_date, '%Y-%m-01') 																month
-	,o.customer_id
-	,SUM(op.item_quantity*COALESCE(p.product_price,0)*(1-COALESCE(op.position_discount,0))) 			revenue
-FROM orders o
-JOIN order_positions op ON o.order_id = op.order_id
-JOIN products p ON op.product_id = p.product_id
-GROUP BY month, o.customer_id
-), spending_with_prev AS
-(
-SELECT
-	customer_id
-	,month
-	,revenue
-	,LAG(month) OVER (
-	PARTITION BY customer_id
-	ORDER BY month) 																					prev_month
-	,LAG(revenue) OVER (
-	PARTITION BY customer_id
-	ORDER BY month) 																					prev_month_revenue
-FROM customer_monthly_spending
-)
-SELECT
-	customer_id
-	,month
-	,ROUND(revenue, 2) 																					current_month_revenue
-	,ROUND(prev_month_revenue, 2) prev_month_revenue
-FROM spending_with_prev
-WHERE prev_month = DATE_SUB(month, INTERVAL 1 MONTH) AND
-	revenue > prev_month_revenue
-ORDER BY customer_id, month;
-
-/*===================================================================================================
-8️⃣ Month+1 Purchase Return Rate
-🎯 Goal: Measure customer retention month-over-month
-🛠️ Stack: SQL
-💡 Impact: Evaluates loyalty program effectiveness
-====================================================================================================*/
-WITH customers_month AS
-(
-SELECT
-	DATE_FORMAT(o.order_date, '%Y-%m-01') month
-	,o.customer_id
-FROM orders o
-GROUP BY month, o.customer_id
-), order_next AS
-(
-SELECT
-	month
-	,customer_id
-	,LEAD(month) OVER (
-	PARTITION BY customer_id 
-	ORDER BY month) 																					next_order
-,DATE_ADD(month, INTERVAL 1 MONTH) 																		next_month
-FROM customers_month
-)
-SELECT
-	month
-	,COUNT(customer_id) monthly_customers
-	,COUNT(CASE
-		WHEN next_order = next_month
-		THEN customer_id
-		END) 																							bought_next_month
-	,ROUND(COUNT(CASE
-		WHEN next_order = next_month
-		THEN customer_id
-	END) * 100.0 /
-	COUNT(customer_id), 2) 																				next_month_buyers_pct
-FROM order_next
-GROUP BY month
-ORDER BY month;
-
-/*===================================================================================================
-9️⃣ Discount Effectiveness Analysis
-🎯 Goal: Evaluate impact of discounts on order value
-🛠️ Stack: SQL
-💡 Impact: Informs discount strategy optimization
-====================================================================================================*/
-WITH position_values AS
-(
-SELECT
-	op.order_id
-	,op.item_quantity*COALESCE(p.product_price,0)*
-		(1-COALESCE(op.position_discount,0)) 															position_value
-	,(op.item_quantity*COALESCE(p.product_price,0)) -
-		(op.item_quantity*COALESCE(p.product_price,0)*
-		(1-COALESCE(op.position_discount,0))) 															discount_value
-FROM order_positions op
-JOIN products p ON op.product_id = p.product_id
-), order_flags AS
-(
-SELECT
-	order_id
-	,SUM(position_value) 																				order_value
-	,SUM(discount_value) 																				total_discount_value
-	,CASE
-		WHEN SUM(discount_value) > 0
-		THEN 1
-		ELSE 0
-	END																									discounted_order
-FROM position_values
-GROUP BY order_id
-)
-SELECT
-	ROUND(AVG(CASE
-		WHEN discounted_order = 1
-		THEN order_value
-	END), 2) 																							avg_discounted_order_value
-	,ROUND(AVG(CASE
-		WHEN discounted_order = 0
-		THEN order_value
-	END), 2) 																							avg_non_discounted_order_value
-	,ROUND(AVG(CASE
-		WHEN discounted_order = 1
-		THEN order_value 
-	END) -
-	AVG(CASE
-	WHEN discounted_order = 0
-	THEN order_value 
-	END), 2) 																							avg_order_value_diff
-FROM order_flags;
-
-/*===================================================================================================
-🔟 Customer Value Segmentation with NTILE
 🎯 Goal: Segment customers by lifetime value
 🛠️ Stack: SQL
 💡 Impact: Enables targeted marketing strategies
