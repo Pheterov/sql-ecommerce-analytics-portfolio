@@ -64,7 +64,6 @@ orders ─┬── order_positions ─── products ─── product_groups
 
 </details>
 
-&nbsp;
 
 ## 🏆 Sample Output (Interpretation Ready)
 
