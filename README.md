@@ -26,8 +26,9 @@
 | 👥 Customer Retention (M+1) | M+1 retention: 9–13% early, 15–40% later | Shift from acquisition-heavy to retention strategy |
 | 🚚 Delivery Efficiency | ~15% orders consistently delayed | Potential logistics bottlenecks |
 | 🎯 Discount Impact | Correlation with revenue & shipping delays | Informs promotion & pricing strategy |
-
-> Each insight highlights a measurable business opportunity based on real e-commerce data.
+<br>
+<br>
+Each insight highlights a measurable business opportunity based on real e-commerce data.
 
 ---
 
