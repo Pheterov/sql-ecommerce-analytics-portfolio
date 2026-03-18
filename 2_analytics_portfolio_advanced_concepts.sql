@@ -247,7 +247,7 @@ ORDER BY items_sold DESC
 LIMIT 1;
 
 /*===================================================================================================
-4️⃣ Running Total Revenue per Customer
+3️⃣ Running Total Revenue per Customer
 🎯 Goal: Track cumulative customer spending over time
 🛠️ Stack: SQL
 💡 Impact: Identifies high-value customers for retention programs
@@ -275,7 +275,7 @@ FROM customer_orders
 ORDER BY customer_id, order_date, order_id;
 
 /*===================================================================================================
-5️⃣ Month-over-Month AOV Change
+4️⃣ Month-over-Month AOV Change
 🎯 Goal: Measure average order value trends
 🛠️ Stack: SQL
 💡 Impact: Identifies pricing strategy effectiveness
@@ -307,7 +307,7 @@ FROM monthly_averages
 ORDER BY month;
 
 /*===================================================================================================
-6️⃣ Top 2 Products by Revenue within Each Category
+ Top 2 Products by Revenue within Each Category
 🎯 Goal: Identify best-performing products per category
 🛠️ Stack: SQL
 💡 Impact: Guides product placement and promotion strategies
@@ -345,7 +345,7 @@ WHERE ranking <= 2
 ORDER BY category, ranking, revenue DESC;
 
 /*===================================================================================================
-7️⃣ Customers Spending More Than in Previous Month
+6️⃣ Customers Spending More Than in Previous Month
 🎯 Goal: Identify customers with increasing spend patterns
 🛠️ Stack: SQL
 💡 Impact: Targets customers for upsell opportunities
@@ -385,7 +385,7 @@ WHERE prev_month = DATE_SUB(month, INTERVAL 1 MONTH) AND
 ORDER BY customer_id, month;
 
 /*===================================================================================================
-8️⃣ Month+1 Purchase Return Rate
+7️⃣ Month+1 Purchase Return Rate
 🎯 Goal: Measure customer retention month-over-month
 🛠️ Stack: SQL
 💡 Impact: Evaluates loyalty program effectiveness
@@ -425,7 +425,7 @@ GROUP BY month
 ORDER BY month;
 
 /*===================================================================================================
-9️⃣ Discount Effectiveness Analysis
+8️⃣ Discount Effectiveness Analysis
 🎯 Goal: Evaluate impact of discounts on order value
 🛠️ Stack: SQL
 💡 Impact: Informs discount strategy optimization
@@ -475,7 +475,7 @@ SELECT
 FROM order_flags;
 
 /*===================================================================================================
-🔟 Customer Value Segmentation with NTILE
+9️⃣ Customer Value Segmentation with NTILE
 🎯 Goal: Segment customers by lifetime value
 🛠️ Stack: SQL
 💡 Impact: Enables targeted marketing strategies
