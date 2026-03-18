@@ -128,7 +128,7 @@ ORDER BY product_category, month;
 3️⃣ Top 5 Products by Sales Volume
 🎯 Goal: Spot the best-sellers so marketing and stock focus on what really drives revenue.
 🛠️ Stack: SQL 
-💡 Impact: Prioritizes top performers to drive revenue.
+💡 Impact: Identify top-revenue products to guide marketing and inventory decisions.
 📊 Example KPI:
 | product_name          | total_units_sold | sales_rank |
 |-----------------------|------------------|------------|
