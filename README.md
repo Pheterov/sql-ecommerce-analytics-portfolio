@@ -23,9 +23,9 @@
 | Focus | Insight | Business Takeaway |
 |-------|---------|-----------------|
 | <center><p align = "center">💰</p> </center> Revenue Performance | Top 10% products generate ~60% of revenue | Focus marketing & inventory on high-impact products |
-| 👥 <br> Customer Retention(M+1) | M+1 retention: 9–13% early, 15–40% later | Shift from acquisition-heavy to retention strategy |
-| 🚚 <br> Delivery Efficiency | ~15% orders consistently delayed | Potential logistics bottlenecks |
-| 🎯 <br> Discount Impact | Correlation with revenue & shipping delays | Informs promotion & pricing strategy |
+| <center><p align = "center">👥</p> </center> Customer Retention(M+1) | M+1 retention: 9–13% early, 15–40% later | Shift from acquisition-heavy to retention strategy |
+| <center><p align = "center">🚚</p> </center> Delivery Efficiency | ~15% orders consistently delayed | Potential logistics bottlenecks |
+| <center><p align = "center">🎯</p> </center> Discount Impact | Correlation with revenue & shipping delays | Informs promotion & pricing strategy |
 <br>
 Each insight highlights a measurable business opportunity based on real e-commerce data.
 
