@@ -5,7 +5,7 @@
 
 ---
 
-## 👀 TL;DR — Why You Should Care
+## 👀 Summary / Role Fit — Why You Should Care
 
 | What | Snapshot |
 |------|---------|
@@ -22,8 +22,8 @@
 
 | Focus | Insight | Business Takeaway |
 |-------|---------|-----------------|
-| <p align="center">💰<br>Revenue Performance</p> | Top 10% products generate ~60% of revenue | Focus marketing & inventory on high-impact products |
-| <p align="center">👥<br>Customer Retention(M+1)</p> | M+1 retention: 9–13% early, 15–40% later | Shift from acquisition-heavy to retention strategy |
+| <p align="center">💰<br>Revenue Performance</p> | Top 10% products generate ~60% of revenue. | Retaining high-value customers is critical for growth. |
+| <p align="center">👥<br>Customer Retention(M+1)</p> | New customers drive initial revenue; returning customers’ share grows over time, showing retention strategies are important. | Shift from acquisition-heavy to retention strategy |
 | <p align="center">🚚<br>Delivery Efficiency</p>  | ~15% orders consistently delayed | Potential logistics bottlenecks |
 | <p align="center">🎯<br>Discount Impact</p>| Correlation with revenue & shipping delays | Informs promotion & pricing strategy |
 
@@ -112,4 +112,4 @@ New customers drive initial revenue, but the growing share of returning customer
 
 ## 🎯 Bottom Line
 
-If you need someone who writes SQL that actually drives decisions, this repo shows business-first, reproducible analysis with real e-commerce data.
+This repository demonstrates business-focused, reproducible SQL analyses on real e-commerce data.
