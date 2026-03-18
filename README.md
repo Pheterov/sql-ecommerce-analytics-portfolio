@@ -68,19 +68,6 @@ orders ─┬── order_positions ─── products ─── product_groups
 
 ## 🏆 Sample Output (Interpretation Ready)
 
-**Top 10% Customer Contribution to Total Revenue**  
-
-| top_10pct_revenue | total_revenue | top_10pct_revenue_pct |
-|-------------------|---------------|-----------------------|
-| 1 348 957,66      | 2 268 169,36  | 59,47                 |
-
-&nbsp;
-
-## **💡 Key Insight:**  
-Top 10% of customers generate nearly 60% of total revenue, highlighting the critical importance of retaining high-value clients for sustained business growth.
-
-&nbsp;
-
 **Monthly Revenue Breakdown: New vs Returning Customers**  
 
 *Dates are shown as MM-YY for compactness.*
