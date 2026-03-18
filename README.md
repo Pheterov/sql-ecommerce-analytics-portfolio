@@ -16,16 +16,22 @@
 
 > I don’t just analyze data or query tables — I look for decisions hidden inside the numbers.
 
+&nbsp;
+
 ## 📊 Highlighted Insights (Real Impact)
 
 | Focus | Insight | Business Takeaway |
 |-------|---------|-----------------|
 | <p align="center">💰<br>Revenue Performance</p> | Top 10% products generate ~60% of revenue | Focus marketing & inventory on high-impact products |
-| <p align="center">👥<br>Customer Retention(M+1)</p> </center> | M+1 retention: 9–13% early, 15–40% later | Shift from acquisition-heavy to retention strategy |
+| <p align="center">👥<br>Customer Retention(M+1)</p> | M+1 retention: 9–13% early, 15–40% later | Shift from acquisition-heavy to retention strategy |
 | <p align="center">🚚<br>Delivery Efficiency</p>  | ~15% orders consistently delayed | Potential logistics bottlenecks |
 | <p align="center">🎯<br>Discount Impact</p>| Correlation with revenue & shipping delays | Informs promotion & pricing strategy |
 
+&nbsp;
+
 Each insight highlights a measurable business opportunity based on real e-commerce data.
+
+&nbsp;
 
 ## 🔧 Tech Stack & Skills
 
@@ -39,15 +45,12 @@ Each insight highlights a measurable business opportunity based on real e-commer
 | **Advanced** | Multi-level CTEs, MoM comparisons, cohort logic |
 | **Business Metrics** | Revenue, AOV, Retention Rate, Customer LTV, Pareto |
 
----
+&nbsp;
 
 ## 🗄️ Schema (Simple View)
-orders ─┬── order_positions ─── products ─── product_groups
-<br>
-&emsp;&emsp;&emsp;&emsp;├── order_ratings
-<br>
-&emsp;&emsp;&emsp;&emsp;└── order_returns
-
+orders ─┬── order_positions ─── products ─── product_groups  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;├── order_ratings  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;└── order_returns  
 
 <details>
 <summary>📋 Click for full table structure</summary>
@@ -61,34 +64,40 @@ orders ─┬── order_positions ─── products ─── product_groups
 
 </details>
 
+&nbsp;
+
 ## 🏆 Sample Output (Interpretation Ready)
+
 **Top 10% Customer Contribution to Total Revenue**  
 
 | top_10pct_revenue | total_revenue | top_10pct_revenue_pct |
 |-------------------|---------------|-----------------------|
-|    1 348 957,66   |  2 268 169,36 |                 59,47 |
-<br>
+| 1 348 957,66      | 2 268 169,36  | 59,47                 |
 
-💡 Key Insight:
+&nbsp;
+
+💡 Key Insight:  
 Top 10% of customers generate nearly 60% of total revenue, highlighting the critical importance of retaining high-value clients for sustained business growth.
 
-<br>
+&nbsp;
 
 **Monthly Revenue Breakdown: New vs Returning Customers**  
 
-|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;month&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| new_customer_revenue | returning_customer_revenue | new_revenue_pct | returning_revenue_pct |
-|------------|----------------------|----------------------------|--------------------------|--------------------------------|
-| 2018-01-01   | 324,04 | [NULL] | 100 | [NULL] |
-| 2018-02-01   | 14 470,88 | [NULL] | 100 | [NULL] |
-| 2018-03-01   | 8 326,86 | 225,23 | 97,37 | 2,63 |
-| 2018-04-01   | 39 682,17 | 1 150,89 | 97,18 | 2,82 |
-| 2018-05-01   | 23 230,08 | 3 270,22 | 87,66 | 12,34 |
-| 2018-06-01   | 23 276,30 | 6 036,73 | 79,41 | 20,59 |
-<br>
+| month       | new_customer_revenue | returning_customer_revenue | new_revenue_pct | returning_revenue_pct |
+|------------|----------------------|----------------------------|----------------|----------------------|
+| 2018-01-01 | 324,04               | [NULL]                     | 100            | [NULL]               |
+| 2018-02-01 | 14 470,88            | [NULL]                     | 100            | [NULL]               |
+| 2018-03-01 | 8 326,86             | 225,23                      | 97,37          | 2,63                 |
+| 2018-04-01 | 39 682,17            | 1 150,89                    | 97,18          | 2,82                 |
+| 2018-05-01 | 23 230,08            | 3 270,22                     | 87,66          | 12,34                |
+| 2018-06-01 | 23 276,30            | 6 036,73                     | 79,41          | 20,59                |
 
-💡 Key Insight:
+&nbsp;
+
+💡 Key Insight:  
 New customers drive initial revenue, but the growing share of returning customers signals that retention strategies are key to sustainable growth.
 
+&nbsp;
 
 ## 📝 Documented Assumptions
 
