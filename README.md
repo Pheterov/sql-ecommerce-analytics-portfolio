@@ -89,7 +89,6 @@ Top 10% of customers generate nearly 60% of total revenue, highlighting the crit
 💡 Key Insight:
 New customers drive initial revenue, but the growing share of returning customers signals that retention strategies are key to sustainable growth.
 
----
 
 ## 📝 Documented Assumptions
 
