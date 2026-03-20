@@ -219,19 +219,19 @@ Next step: Identify metrics that actually explain revenue dynamics.
 
 WITH base_metrics AS (
 SELECT
-    EXTRACT(YEAR FROM o.order_date)																										year
-    ,EXTRACT(MONTH FROM o.order_date)																									month
+    EXTRACT(YEAR FROM o.order_date)																											year
+    ,EXTRACT(MONTH FROM o.order_date)																										month
     ,ROUND(SUM(op.item_quantity*COALESCE(p.product_price,0)*
-    	(1-COALESCE(op.position_discount,0))), 2)																						revenue
-    ,COUNT(DISTINCT op.order_id)																										orders_cnt
-    ,COUNT(DISTINCT o.customer_id)																										unique_customers
-    ,SUM(op.item_quantity)																												items_sold
+    	(1-COALESCE(op.position_discount,0))), 2)																							revenue
+    ,COUNT(DISTINCT op.order_id)																											orders_cnt
+    ,COUNT(DISTINCT o.customer_id)																											unique_customers
+    ,SUM(op.item_quantity)																													items_sold
     ,ROUND(SUM(op.item_quantity*COALESCE(p.product_price,0)*
     	(1-COALESCE(op.position_discount,0))) /
-    	NULLIF(COUNT(DISTINCT op.order_id),0),2)																						aov
+    	NULLIF(COUNT(DISTINCT op.order_id),0),2)																							aov
     ,ROUND(SUM(op.item_quantity*COALESCE(p.product_price, 0)*
 		COALESCE(op.position_discount, 0)) /
-    	NULLIF(SUM(op.item_quantity*COALESCE(p.product_price, 0)), 0) * 100, 2)															discount_depth
+    	NULLIF(SUM(op.item_quantity*COALESCE(p.product_price, 0)), 0) * 100, 2)																discount_depth
 FROM orders o
 JOIN order_positions op ON o.order_id = op.order_id
 JOIN products p ON op.product_id = p.product_id
@@ -241,84 +241,84 @@ GROUP BY year, month
 SELECT
     year
     ,month
-    ,revenue																															cyr_rev
+    ,revenue																																cyr_rev
     ,LAG(revenue) OVER(
     	PARTITION BY MONTH
-    	ORDER BY year)																													lyr_rev
+    	ORDER BY year)																														lyr_rev
     ,revenue - LAG(revenue) OVER(
     	PARTITION BY MONTH
-    	ORDER BY year)																													rev_diff
+    	ORDER BY year)																														rev_diff
     ,ROUND((revenue - LAG(revenue) OVER(
     	PARTITION BY MONTH
     	ORDER BY year)) /
     LAG(revenue) OVER(
     	PARTITION BY MONTH
-    	ORDER BY year)*100.0, 2)																												rev_pct_diff
-    ,orders_cnt																															orders_cnt
+    	ORDER BY year)*100.0, 2)																											rev_pct_diff
+    ,orders_cnt																																orders_cnt
     ,LAG(orders_cnt) OVER(
     	PARTITION BY month 
-    	ORDER BY year)																													lyr_o_cnt
+    	ORDER BY year)																														lyr_o_cnt
     ,orders_cnt - LAG(orders_cnt) OVER(
     	PARTITION BY month 
-    	ORDER BY year)																													ord_diff
+    	ORDER BY year)																														ord_diff
     ,ROUND((orders_cnt - LAG(orders_cnt) OVER(
     	PARTITION BY month 
     	ORDER BY year)) /
     LAG(orders_cnt) OVER(
     	PARTITION BY month 
-    	ORDER BY year)*100.0, 2)																												ord_pct_diff
-    ,unique_customers																													uniq_cstmr
+    	ORDER BY year)*100.0, 2)																											ord_pct_diff
+    ,unique_customers																														uniq_cstmr
     ,LAG(unique_customers) OVER(
     	PARTITION BY month 
-    	ORDER BY year)																													lyr_uniq
+    	ORDER BY year)																														lyr_uniq
     ,unique_customers - LAG(unique_customers) OVER(
     	PARTITION BY MONTH
-    	ORDER BY year)																													cstmr_diff
+    	ORDER BY year)																														cstmr_diff
     ,ROUND((unique_customers - LAG(unique_customers) OVER(
     	PARTITION BY month 
     	ORDER BY year)) / 
     LAG(unique_customers) OVER(
     	PARTITION BY month 
-    	ORDER BY year)*100.0, 2)																										cstmr_pct_diff
-    ,items_sold																															items_sold
+    	ORDER BY year)*100.0, 2)																											cstmr_pct_diff
+    ,items_sold																																items_sold
     ,LAG(items_sold) OVER(
     	PARTITION BY month 
-    	ORDER BY year)																													lyr_items
+    	ORDER BY year)																														lyr_items
     ,items_sold - LAG(items_sold) OVER(
     	PARTITION BY MONTH
-    	ORDER BY year)																													items_diff
+    	ORDER BY year)																														items_diff
     ,ROUND((items_sold - LAG(items_sold) OVER(
     	PARTITION BY month 
     	ORDER BY year)) /
     LAG(items_sold) OVER(
     	PARTITION BY month 
-    	ORDER BY year)*100.0, 2)																										items_pct_diff	
-    ,ROUND(aov,2)																														aov
+    	ORDER BY year)*100.0, 2)																											items_pct_diff	
+    ,ROUND(aov,2)																															aov
     ,LAG(aov) OVER(
     	PARTITION BY month 
-    	ORDER BY year)																													lyr_aov
+    	ORDER BY year)																														lyr_aov
     ,ROUND(aov - LAG(aov) OVER(
     	PARTITION BY month 
-    	ORDER BY year), 2)																												aov_change
+    	ORDER BY year), 2)																													aov_change
     ,ROUND((aov - LAG(aov) OVER(
     	PARTITION BY month 
     	ORDER BY year)) /
     LAG(aov) OVER(
     	PARTITION BY month 
-    	ORDER BY year)*100.0, 2)																												aov_pct_change
-    ,discount_depth																														d_depth
+    	ORDER BY year)*100.0, 2)																											aov_pct_change
+    ,discount_depth																															d_depth
     ,LAG(discount_depth) OVER(
     	PARTITION BY month 
-    	ORDER BY year)																													lyr_d_depth
+    	ORDER BY year)																														lyr_d_depth
     ,discount_depth - LAG(discount_depth) OVER(
     	PARTITION BY MONTH
-    	ORDER BY year)																													d_depth_diff
+    	ORDER BY year)																														d_depth_diff
     ,ROUND((discount_depth- LAG(discount_depth) OVER(
     	PARTITION BY month 
     	ORDER BY year)) / 
     LAG(discount_depth) OVER(
     	PARTITION BY month 
-    	ORDER BY year)*100.0, 2)																										d_depth_pct_change
+    	ORDER BY year)*100.0, 2)																											d_depth_pct_change
 FROM base_metrics
 ORDER BY year DESC, month DESC;
 
