@@ -296,12 +296,14 @@ Query result snippet:
 
 This table is serving us in future calculations, we're not going to report it in it's current form. 
 
-🔍 Also November of 2021 repesents very interesting case. Equal amount of customers, less orders but revenue is doubled, would've been nice to
-take a deeper look there aswell.
+🔍 In the case of September, the increase in revenue can be attributed to the growth in the customer base in comparison to the last year.
++71% revenue +68% orders, +57% customers, nearly doubled items sold.This suggests that growth was volume-driven rather than changes in pricing or customer behavior.
+However, November 2021 presents a particularly interesting case.
+Equal amount of customers, slightly less orders but revenue is doubled,strong candidate for deeper analysis.
 
 Notes & Reflections
 Currently, all our activities are taking place at the state level, but as we move forward, we will begin to analyze them in greater detail.
-The answers are not in a plain sight, we have to constantly make decisions add, delete, adjust, change granularity.
+The answers are not in a plain sight, we have to constantly make decisions which columnts to add or delete, adjust, change granularity.
 
 
 /*================================================================================================================================================================================================
