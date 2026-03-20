@@ -296,7 +296,7 @@ Query result snippet:
 
 This table is serving us in future calculations, we're not going to report it in it's current form. 
 
-🔍 In the case of September, the increase in revenue can be attributed to the growth in the customer base in comparison to the last year.
+🔍 In the case of September, the increase in revenue can be corellated with the growth in the customer base in comparison to the last year.
 +71% revenue +68% orders, +57% customers, nearly doubled items sold.This suggests that growth was volume-driven rather than changes in pricing or customer behavior.
 However, November 2021 presents a particularly interesting case.
 Equal amount of customers, slightly less orders but revenue is doubled,strong candidate for deeper analysis.
