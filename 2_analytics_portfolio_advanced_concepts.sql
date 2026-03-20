@@ -303,7 +303,7 @@ Equal amount of customers, slightly less orders but revenue is doubled,strong ca
 
 Notes & Reflections
 Currently, all our activities are taking place at the state level, but as we move forward, we will begin to analyze them in greater detail.
-The answers are not in a plain sight, we have to constantly make decisions which columnts to add or delete, adjust, change granularity.
+The answers are not in a plain sight, we have to constantly make decisions which columns to add or delete, adjust, change granularity.
 
 
 /*================================================================================================================================================================================================
