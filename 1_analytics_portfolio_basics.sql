@@ -305,8 +305,8 @@ SELECT
     ,ROUND(revenue, 2)															revenue
     ,ranking
 FROM monthly_product_revenue
-WHERE revenue_rank <= 3
-ORDER BY month, revenue_rank;
+WHERE ranking <= 3
+ORDER BY month, ranking;
 
 /*===================================================================================================
 6️⃣ New vs Returning Customer Analysis
