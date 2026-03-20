@@ -322,7 +322,9 @@ SELECT
 FROM base_metrics
 ORDER BY year DESC, month DESC;
 
+/*==================================================================================================================================================================
 -- Our initial version of the code is not team-friendly, neither it'll be easy for us to understand what's going on there in a week. Let's fix that. 
+==================================================================================================================================================================*/
 
 WITH base_metrics AS (
 -- CTE 1: Monthly aggregation for California
