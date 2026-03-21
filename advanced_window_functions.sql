@@ -21,7 +21,8 @@ Methodology:
 WITH monthly_revenue AS (
 SELECT
 	DATE_FORMAT(order_date, '%Y-%m-01') 									month
-	,SUM(op.item_quantity * p.product_price * (1 - position_discount)) 		revenue
+	,SUM(op.item_quantity*COALESCE(p.product_price,0)*
+		(1-COALESCE(op.position_discount,0))) 								revenue
 FROM orders o
 JOIN order_positions op ON o.order_id = op.order_id
 JOIN products p ON op.product_id = p.product_id
@@ -61,7 +62,8 @@ WITH month_revenue AS
 (
 SELECT
 	DATE_FORMAT(o.order_date, '%Y-%m-01')									month
-	,SUM(op.item_quantity*p.product_price*(1-op.position_discount)) 		revenue
+	,SUM(op.item_quantity*COALESCE(p.product_price,0)*
+		(1-COALESCE(op.position_discount,0))) 								revenue
 FROM orders o
 JOIN order_positions op ON o.order_id = op.order_id
 JOIN products p ON op.product_id = p.product_id
@@ -90,18 +92,19 @@ WITH month_revenue AS
 SELECT
 	EXTRACT(YEAR FROM o.order_date)											year
 	,DATE_FORMAT(o.order_date, '%Y-%m-01')									month
-	,SUM(op.item_quantity*p.product_price*(1-op.position_discount))			revenue
+	,SUM(op.item_quantity*COALESCE(p.product_price,0)*
+		(1-COALESCE(op.position_discount,0)))								revenue
 FROM orders o
 JOIN order_positions op ON o.order_id = op.order_id
 JOIN products p ON op.product_id = p.product_id
-GROUP BY year,month
+GROUP BY year, month
 )
 SELECT
 	month
 	,ROUND(revenue, 2)														revenue
 	,ROUND(SUM(revenue) OVER(
-	PARTITION BY year
-	ORDER BY month), 2)														revenue_ytd
+		PARTITION BY year
+		ORDER BY month), 2)													revenue_ytd
 	,year
 FROM month_revenue
 ORDER BY month;
@@ -124,12 +127,11 @@ WITH customer_revenue AS
 (
 SELECT
 	o.customer_id
-	,SUM(op.item_quantity *p.product_price*(1-op.position_discount))		revenue
+	,SUM(op.item_quantity*COALESCE(p.product_price,0)*
+		(1-COALESCE(op.position_discount,0)))								revenue
 FROM orders o
-JOIN order_positions op 
-	ON o.order_id = op.order_id
-JOIN products p 
-	ON op.product_id = p.product_id
+JOIN order_positions op ON o.order_id = op.order_id
+JOIN products p ON op.product_id = p.product_id
 GROUP BY o.customer_id
 ), ranked_customers AS
 (
@@ -143,9 +145,9 @@ FROM customer_revenue
 SELECT
 	customer_id
 	,ROUND(revenue,2)														revenue
-	,ROUND(cumulative_revenue / total_revenue * 100.0 , 2)					cumulative_revenue_pct
+	,ROUND(cumulative_revenue/NULLIF(total_revenue,0)*100.0, 2)				cumulative_revenue_pct
 	,CASE
-		WHEN cumulative_revenue / total_revenue <= 0.8
+		WHEN cumulative_revenue/total_revenue <= 0.8
 		THEN 'Top 80% revenue customers'
 		ELSE 'Remaining customers'
 	END																		pareto_segment
@@ -160,7 +162,8 @@ WITH customer_revenue AS
 (
 SELECT
 	o.customer_id
-	,SUM(op.item_quantity * p.product_price * (1 - op.position_discount))	revenue
+	,SUM(op.item_quantity*COALESCE(p.product_price,0)*
+		(1-COALESCE(op.position_discount,0)))								revenue
 FROM orders o
 JOIN order_positions op ON o.order_id = op.order_id
 JOIN products p ON op.product_id = p.product_id
@@ -174,9 +177,9 @@ SELECT
 FROM customer_revenue
 )
 SELECT
-	ROUND(COUNT(*)/ (SELECT COUNT(*) FROM customer_revenue)*100.0, 2)		pct_customers_generating_80pct_revenue
+	ROUND(COUNT(*)/NULLIF((SELECT COUNT(*) FROM customer_revenue),0)*100.0, 2) pct_customers_generating_80pct_revenue
 FROM ranked_customers
-WHERE cumulative_revenue / total_revenue <= 0.8;
+WHERE cumulative_revenue/total_revenue <= 0.8;
 
 /*
 ================================================================================
@@ -198,8 +201,8 @@ SELECT
 	,o.order_date
 	,DATE_ADD(o.order_date, INTERVAL 90 DAY)								churn_date
 	,LEAD(o.order_date) OVER(
-	PARTITION BY customer_id
-	ORDER BY order_date)													next_order
+		PARTITION BY customer_id
+		ORDER BY order_date)												next_order
 FROM orders o
 ), churn_flags AS
 (
@@ -207,8 +210,8 @@ SELECT
 	customer_id
 	,churn_date
 	,next_order
-	,CASE WHEN
-		next_order IS NULL
+	,CASE
+		WHEN next_order IS NULL
 		AND CURDATE() >= churn_date
 		THEN 1
 		WHEN next_order IS NOT NULL
@@ -221,8 +224,7 @@ FROM customer_orders
 SELECT
 	DATE_FORMAT(churn_date, '%Y-%m-01')										churn_month
 	,COUNT(DISTINCT
-		CASE WHEN
-			is_churned
+		CASE WHEN is_churned = 1
 		THEN customer_id
 	END)																	churned_customers
 FROM churn_flags
@@ -247,7 +249,8 @@ WITH daily_revenue AS
 (
 SELECT
 	o.order_date
-	,SUM(op.item_quantity*p.product_price*(1-op.position_discount))			revenue
+	,SUM(op.item_quantity*COALESCE(p.product_price,0)*
+		(1-COALESCE(op.position_discount,0)))								revenue
 FROM orders o
 JOIN order_positions op ON o.order_id = op.order_id 
 JOIN products p ON op.product_id = p.product_id
@@ -257,7 +260,7 @@ SELECT
 	order_date
 	,ROUND(revenue, 2)														daily_revenue
 	,ROUND(AVG(revenue) OVER(
-	ORDER BY order_date 
-	ROWS BETWEEN 3 PRECEDING AND 3 FOLLOWING), 2) 							ma_7
+		ORDER BY order_date 
+		ROWS BETWEEN 3 PRECEDING AND 3 FOLLOWING), 2) 						ma_7
 FROM daily_revenue
 ORDER BY order_date;
