@@ -232,7 +232,7 @@ GROUP BY churn_month
 ORDER BY churn_month;
 
 /*
-================================================================================
+=================================================================================
 Task 5: 7-Day Centered Moving Average (Daily Revenue)
 Business Objective:
 Smooth daily revenue fluctuations to identify underlying trends.
@@ -243,7 +243,7 @@ ROWS BETWEEN counts physical rows, not calendar days.
 If data has gaps (e.g. no sales on weekends), the window may span
 more than 7 calendar days. For strict calendar-day windows,
 a date spine (calendar table) would be required.
-================================================================================
+=================================================================================
 */
 WITH daily_revenue AS
 (
