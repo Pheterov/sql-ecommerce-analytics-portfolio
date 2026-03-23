@@ -336,8 +336,8 @@ These tables are serving us in future calculations, we're not going to report it
 
 The number of columns may feel overwhelming at first glance. So why structure it this way when we have previously mentioned reducing amount for easier decision making rather than producing noise?
 
-Comparing a single metric often requires looking at multiple related values.
 Because metrics without context are misleading - as we have presented in the very 1st query of this presentation.
+Comparing a single metric often requires looking at multiple related values.
 
 A percentage change like -5% means very little on its own. Does it represent a drop from 1,000 customers to 950, or from 20 customers to 19?
 The business impact in these two scenarios is completely different. The same applies to absolute values — losing 10 customers might be insignificant at scale, or critical if your baseline is small.
