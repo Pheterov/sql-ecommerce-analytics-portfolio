@@ -10,4 +10,3 @@ Charts for final conclusion
 <img width="1086" height="505" alt="image" src="https://github.com/user-attachments/assets/a87a9f4a-e4f5-416f-9fcc-166c163a5699" />
 
 <img width="1084" height="577" alt="image" src="https://github.com/user-attachments/assets/674304d1-cbc6-452d-b3e4-8ac1a379334f" />
-
