@@ -1,4 +1,4 @@
-Charts that I could not include in .sql file type. The full story and thought process is in california_revenue_deep_dive.sql
+Charts that I could not include in .sql file type. The full story and thought process is in [My deep dive analysis](https://github.com/Pheterov/MySQL-ecommerce-analytics-portfolio/blob/main/california_revenue_deep_dive/california_revenue_deep_dive.sql)
 
 Chart to query #1
 
