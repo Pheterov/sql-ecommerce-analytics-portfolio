@@ -16,7 +16,7 @@
 
 ---
 
-## 📌 Executive Summary
+## Executive Summary
 
 California is the top-performing state in this e-commerce dataset — by total revenue, order count, and customer volume. On the surface, it tells a success story. But surface-level metrics are designed to flatter, not inform. This analysis begins with a single revenue figure and methodically peels back the layers underneath: a suspicious YoY anomaly, a data completeness gap, a volume surge that masked customer quality decline, and finally, a retention signal that confirms the fragility of California's recent growth. **The conclusion is sobering: since 2021, California's revenue growth has been built on customers who don't come back.** Without a strategic shift, the pipeline of high-value repeat buyers will continue to dry up — and the revenue trajectory is likely to follow.
 
@@ -24,11 +24,11 @@ California is the top-performing state in this e-commerce dataset — by total r
 
 ---
 
-## 🔍 The Problem: What looks like SUCCES might be RISK
+## The Problem: What looks like SUCCES might be RISK
 
 ### Starting Point: Revenue by State
 
-Every analysis begins somewhere. The natural starting point is the most visible metric: total revenue by delivery state. California leads decisively — $451,450 in revenue across 1,021 orders. New York follows at $312,376, and Texas at $164,948. On a dashboard, this looks like a clear answer to the question "Where should we focus?"
+Every analysis begins somewhere. The natural starting point is the most visible metric: total revenue by delivery state. California leads decisively — $451,450 in revenue across 1,021 orders. New York follows at $312,377, and Texas at $164,948. On a dashboard, this looks like a clear answer to the question "Where should we focus?"
 
 But this is precisely the **trap of vanity metrics**. A single aggregated figure collapses four years of business history into one number. It cannot tell us whether California is growing or declining, whether customers are returning, or whether the revenue base is structurally sound. It only tells us the final score — not how the game was played.
 
@@ -37,7 +37,7 @@ But this is precisely the **trap of vanity metrics**. A single aggregated figure
 
 ---
 
-## ⚠️ First Red Flag: The mysterious revenue drop
+## First Red Flag: The mysterious revenue drop
 
 The logical next step was to examine California's performance over time. A year-over-year breakdown appeared to reveal a catastrophe: a near 90% revenue collapse between 2021 and 2022, dropping from $148,729 to just $16,186. For any analyst — or any executive reading a report — this would trigger immediate alarm.
 
@@ -52,7 +52,7 @@ This moment illustrates a foundational analytical principle: **never draw conclu
 
 ---
 
-## 🧩 Deeper Dive: Unpacking growth drivers
+## Deeper Dive: Unpacking growth drivers
 
 With data integrity confirmed, the analysis moved to understanding California's growth dynamics at a monthly level. Month-over-month and year-over-year metrics — revenue, order counts, unique customers, items sold, average order value, and discount depth — painted a picture of strong apparent growth in late 2021.
 
