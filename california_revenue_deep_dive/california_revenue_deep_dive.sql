@@ -546,9 +546,9 @@ Query result snippet:
 |-------------------|------------------|---------------|-----------|---------|
 | 2022-01-01        | low_value        |            11 |  2 214,32 |  201,30 |
 | 2022-01-01        | loyal_low_value  |             1 |    186,62 |  186,62 |
-| 2021-12-01        | low_value        |             6 |    876,89 |  146,15 |
+| 2021-12-01        | low_value        |             8 |  2 317,81 |  289,73 |
 | 2021-12-01        | loyal_low_value  |             2 |    430,44 |  215,22 |
-| 2021-12-01        | risky_high_value |             5 |  5 720,28 | 1144,06 |
+| 2021-12-01        | risky_high_value |             3 |  4 279,36 | 1426,45 |
 
 📝 Notes & Reflections
    Based on the full query result spanning 2018–2022, a clear pattern emerges.
@@ -689,17 +689,17 @@ Query result snippet:
 | acquisition_month | cyr_rev   | lyr_rev   | rev_pct_diff | top_customers | risky_high_value | loyal_low_value | low_value | total_customers |
 |-------------------|-----------|-----------|--------------|---------------|------=-----------|-----------------|-----------|-----------------|
 | 2022-01-01        | 16 186,48 | 19 957,45 |       -18,90 |             0 |       	        0 |               1 |        11 |              12 |
-| 2021-12-01        | 13 860,23 | 19 555,03 |       -29,12 |             0 |                5 |               2 |         6 |              13 |
+| 2021-12-01        | 13 860,23 | 19 555,03 |       -29,12 |             0 |                3 |               2 |         8 |              13 |
 | 2021-11-01        | 18 346,94 |  8 693,27 |       111,05 |             0 |                3 |               0 |         9 |              12 |
-| 2021-10-01        | 15 769,12 | 12 468,53 |        26,47 |             1 |                1 |               0 |         6 |               8 |
-| 2021-09-01        | 20 248,41 | 11 782,73 |        71,85 |             1 |               	3 |               1 |         7 |              12 |
+| 2021-10-01        | 15 769,12 | 12 468,53 |        26,47 |             0 |                0 |               1 |         7 |               8 |
+| 2021-09-01        | 20 248,41 | 11 782,73 |        71,85 |             0 |               	3 |               1 |         7 |              12 |
 
 📝 Notes & Reflections
    Based on the full query result, the data tells a clear and consistent story.
 
    In 2018–2020, months with strong revenue were typically backed by a healthy share
-   of top_customers — October 2020 alone acquired 9 top_customers alongside strong
-   YoY growth of +49.55%. December 2020 brought 4 top_customers and +78.6% YoY.
+   of top_customers — January 2019 alone acquired 9 top_customers followed by a strong
+   YoY growth of +144.44% in February. December 2020 brought 3 top_customers and +78.6% YoY.
    This suggests that early California growth was driven by genuinely high-value acquisitions.
 
    From 2021 onward the picture changes. The months that showed the strongest YoY growth
@@ -806,10 +806,10 @@ Query result snippet:
 
 | customer_segment | active_customers | retained_customers | retention_rate_pct |
 |------------------|------------------|--------------------|--------------------|
-| loyal_low_value  |              247 |                  9 |               3,64 |
-| top_customer     |              478 |                 13 |               2,72 |
-| low_value        |              219 |                  0 |               0,00 |
-| risky_high_value |               64 |                  0 |               0,00 |
+| loyal_low_value  |              317 |                 11 |               3,47 |
+| top_customer     |              408 |                 11 |               2,70 |
+| low_value        |              244 |                  0 |               0,00 |
+| risky_high_value |               39 |                  0 |               0,00 |
 
 📝 Notes & Reflections
    The retention results are unexpected and require careful interpretation.
@@ -818,7 +818,7 @@ Query result snippet:
    segments do not return the following month. This aligns with the hypothesis built
    in previous steps: California's 2021 growth was structurally fragile.
 
-   However, top_customer retention (2.72%) is slightly lower than loyal_low_value (3.64%).
+   However, top_customer retention (2.70%) is slightly lower than loyal_low_value (3.47%).
    This appears counterintuitive but is explained by the CLV segment definition itself.
    top_customers are classified based on total historical revenue, not purchase frequency.
    A customer who placed two very large orders spread across 40 months will be classified
