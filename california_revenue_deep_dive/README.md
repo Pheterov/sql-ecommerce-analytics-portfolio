@@ -16,7 +16,7 @@ During our SQL deep divie we've identified cause behind the sudden revenue drop 
 
 Charts for final conclusion
 
-Many very interesting questions and answers came up during the discussion, but I decided not to include charts for each one.
+Many very interesting questions and answers came up during the deep dive approach, but I decided not to include charts for each one.
 These two are, in my opinion, the most important and highlight how crucial it is to take a moment for deeper analysis to understand 
 what is really happening with our company. Good results are built on shaky ground. 
 Our company did not grow in a healthy way in 2021, and in early 2022, it continues to accumulate low-value customers.
