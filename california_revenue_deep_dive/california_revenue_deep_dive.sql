@@ -1,4 +1,4 @@
-Project: E-commerce Analytics SQL Portfolio 
+Project: E-commerce Analytics SQL Portfolio
 🛠️ Database: supersales - modified by KajoData MySQL 8.0+
 👤 Author: Piotr Rzepka
 📝 Description: SQL e-commerce analytics portfolio
