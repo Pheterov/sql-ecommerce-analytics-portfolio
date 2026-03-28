@@ -24,7 +24,7 @@ California is the top-performing state in this e-commerce dataset — by total r
 
 ---
 
-## 🔍 The Problem: What Looks Like Success Might Be Risk
+## 🔍 The Problem: What looks like SUCCES might be RISK
 
 ### Starting Point: Revenue by State
 
@@ -37,7 +37,7 @@ But this is precisely the **trap of vanity metrics**. A single aggregated figure
 
 ---
 
-## ⚠️ First Red Flag: The Mysterious Revenue Drop
+## ⚠️ First Red Flag: The mysterious revenue drop
 
 The logical next step was to examine California's performance over time. A year-over-year breakdown appeared to reveal a catastrophe: a near 90% revenue collapse between 2021 and 2022, dropping from $148,729 to just $16,186. For any analyst — or any executive reading a report — this would trigger immediate alarm.
 
@@ -52,7 +52,7 @@ This moment illustrates a foundational analytical principle: **never draw conclu
 
 ---
 
-## 🧩 Deeper Dive: Unpacking Growth Drivers
+## 🧩 Deeper Dive: Unpacking growth drivers
 
 With data integrity confirmed, the analysis moved to understanding California's growth dynamics at a monthly level. Month-over-month and year-over-year metrics — revenue, order counts, unique customers, items sold, average order value, and discount depth — painted a picture of strong apparent growth in late 2021.
 
@@ -64,7 +64,7 @@ But a critical question emerged: **what kind of customers were being acquired du
 
 ---
 
-## 🎯 Customer Segmentation & CLV Analysis
+## 🎯 Customer segmentation & CLV analysis
 
 To move beyond revenue as a proxy for value, a Customer Lifetime Value (CLV) model was constructed from first principles. CLV is defined here as a historical approximation:
 
@@ -105,7 +105,7 @@ By December 2021 and January 2022, revenue had already begun to decline YoY. New
 
 ---
 
-## 🔁 Retention Validation
+## 🔁 Retention validation
 
 To validate the segmentation model, Month+1 retention rates were calculated for each segment — measuring what percentage of active customers placed another order the following calendar month.
 
@@ -125,7 +125,7 @@ The retention gap between `top_customer` (2.72%) and `loyal_low_value` (3.64%) r
 
 ---
 
-## 🏁 Final Conclusion: The Real Cost of Short-Term Thinking
+## 🏁 Final Conclusion: The real cost of short-term thinking
 
 The data tells a coherent and cautionary story. California is the highest-revenue state in this dataset — that fact is not in dispute. But the nature of that revenue has fundamentally changed since 2021. The early years showed genuine, compounding growth: high-value customers being acquired, returning, and expanding their spend. That growth was slow by comparison, but it was durable.
 
@@ -133,7 +133,7 @@ From 2021 onward, acquisition shifted toward volume. More customers, more orders
 
 By early 2022, the consequences were already visible: revenue declining YoY, new cohorts dominated by `low_value` customers, and the `top_customer` pipeline running dry. **Without intervention, this trajectory will continue.** A revenue base built on one-time buyers is not a revenue base — it is a recurring acquisition cost.
 
-### Forward-Looking Recommendations
+### Forward-looking recommendations
 
 - **Shift acquisition focus** — Redirect marketing investment from broad-reach campaigns toward targeted programs that attract buyers with high repeat-purchase potential. Prioritize channels and product categories that historically correlate with `top_customer` acquisition.
 
@@ -147,7 +147,7 @@ By early 2022, the consequences were already visible: revenue declining YoY, new
 
 ---
 
-## 💡 Why This Matters: The Analyst's Mindset
+## 💡 Why this matters: The analyst's mindset
 
 This project was built around a deliberate analytical philosophy: **never stop at "what happened."** Every answer should generate a better question. Revenue by state generates "Is it growing?" YoY growth generates "Is the data complete?" Volume growth generates "What kind of customers?" Acquisition counts generate "Are they coming back?"
 
