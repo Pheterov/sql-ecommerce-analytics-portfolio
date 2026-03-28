@@ -43,7 +43,7 @@ The logical next step was to examine California's performance over time. A year-
 
 **But good analysis demands skepticism before reaction.** A drop of this magnitude, from one year to the next without any external context, is statistically unlikely in a functioning business. The question isn't just "what happened?" — it's "is this real, or is something wrong with the data?"
 
-A simple month-level breakdown of 2022 data immediately revealed the truth: the dataset for 2022 contains only January. The apparent collapse was not a business failure — it was an incomplete dataset being compared against a full calendar year. One month of revenue will always look smaller than twelve.
+A simple month-level breakdown of 2022 data immediately revealed the truth: the dataset for 2022 contains only January. The apparent collapse was not a business failure — it was an incomplete dataset being compared against a full calendar year. One month of revenue will most of the time look smaller than twelve.
 
 <img width="1084" height="606" alt="image" src="https://github.com/user-attachments/assets/68e0c01c-3149-4d5a-8950-73abb0ac1c0c" />
 *Chart 2: California YoY Revenue and orders count — steady and consistent across 2018–2021. The apparent YoY and orders count cliff disappears entirely when the incomplete 2022 data is understood for what it is: a partial year, not a decline.*
