@@ -32,7 +32,7 @@ Every analysis begins somewhere. The natural starting point is the most visible 
 
 But this is precisely the **trap of vanity metrics**. A single aggregated figure collapses four years of business history into one number. It cannot tell us whether California is growing or declining, whether customers are returning, or whether the revenue base is structurally sound. It only tells us the final score — not how the game was played.
 
-![Chart 1: Revenue & Order Count by Delivery State](charts/chart_01_revenue_by_state.png)
+<img width="1084" height="606" alt="image" src="https://github.com/user-attachments/assets/c99b85d6-35d2-48d0-9094-8198bddde5eb" />
 *Chart 1: Revenue & Order Count by Delivery State — California's outsized lead. The metric that would be reported to leadership, and the metric that, without deeper analysis, would lead to misallocated resources and false confidence.*
 
 ---
