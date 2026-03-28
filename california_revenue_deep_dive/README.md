@@ -16,9 +16,10 @@ During our SQL deep divie we've identified cause behind the sudden revenue drop 
 
 Charts for final conclusion
 
-There's been lots of very interesting questions asked and answered along the way but I decided not to include charts for every single one of them.
-These 2 are in my opinion the most important and emphasize on importance of taking a moment to look a little deeper to understand 
-what is really happening with our business. Good results are built on shaky foundations and our business did not grow ina healthy manner over the past 2 years.
+Many very interesting questions and answers came up during the discussion, but I decided not to include charts for each one.
+These two are, in my opinion, the most important and highlight how crucial it is to take a moment for deeper analysis to understand 
+what is really happening with our company. Good results are built on shaky ground. 
+Our company did not grow in a healthy way in 2021, and in early 2022, it continues to accumulate low-value customers.
 
 <img width="1086" height="606" alt="image" src="https://github.com/user-attachments/assets/a87a9f4a-e4f5-416f-9fcc-166c163a5699" />
 
