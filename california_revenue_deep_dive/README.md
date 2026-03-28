@@ -64,7 +64,7 @@ But a critical question emerged: **what kind of customers were being acquired du
 
 ---
 
-## 🎯 Customer segmentation & CLV analysis
+## Customer segmentation & CLV analysis
 
 To move beyond revenue as a proxy for value, a Customer Lifetime Value (CLV) model was constructed from first principles. CLV is defined here as a historical approximation:
 
@@ -89,7 +89,7 @@ This segmentation provides something that revenue alone cannot: a **quality sign
 
 ---
 
-## 📊 Key Insight: Growth ≠ Health
+## Key Insight: Growth ≠ Health
 
 Applying the segmentation model to acquisition cohorts revealed the central finding of this analysis. In 2018–2020, months with strong YoY revenue were consistently backed by meaningful `top_customer` acquisition. October 2020 alone brought in 9 top customers alongside +49.55% YoY growth. December 2020 added 4 top customers with +78.6% revenue growth. The growth was real, and the customers driving it had demonstrated their willingness to return.
 
@@ -99,39 +99,39 @@ From 2021 onward, that pattern broke down. The months with the most dramatic rev
 <img width="1084" height="606" alt="image" src="https://github.com/user-attachments/assets/674304d1-cbc6-452d-b3e4-8ac1a379334f" />
 *Charts 3 and 4: The defining visual of this case study. Monthly YoY revenue growth (%) overlaid with top_customer acquisitions per month. The divergence is stark: the tallest revenue spikes in 2021 coincide with bars near zero for top_customer acquisition. The strongest top_customer months are concentrated in 2018–2020.*
 
-> *We traded sustainable growth for fragile volume. The numbers looked better. The business got worse.*
+> We traded sustainable growth for fragile volume. The numbers looked better. The business got worse.
 
 By December 2021 and January 2022, revenue had already begun to decline YoY. New acquisitions in those months were overwhelmingly `low_value`. **The pipeline of high-value customers was not being replenished.** Unlike a temporary dip in revenue, a hollowed-out customer base takes months or years to rebuild.
 
 ---
 
-## 🔁 Retention validation
+## Retention validation
 
 To validate the segmentation model, Month+1 retention rates were calculated for each segment — measuring what percentage of active customers placed another order the following calendar month.
 
 | Segment | Active Customers | Retained (M+1) | Retention Rate |
 |---|---|---|---|
-| `loyal_low_value` | 247 | 9 | **3.64%** |
-| `top_customer` | 478 | 13 | **2.72%** |
+| `loyal_low_value` | 247 | 9 | **3.47%** |
+| `top_customer` | 478 | 13 | **2.70%** |
 | `low_value` | 219 | 0 | **0.00%** |
 | `risky_high_value` | 64 | 0 | **0.00%** |
 
 `low_value` and `risky_high_value` show **0% Month+1 retention** — confirming that customers in these segments do not return the following month. This directly validates the concern raised in the acquisition quality analysis: California's 2021 growth was built on customers structurally unlikely to come back.
 
-The retention gap between `top_customer` (2.72%) and `loyal_low_value` (3.64%) requires nuanced interpretation. Top customers are classified on total historical revenue, not purchase frequency. A customer who placed two very large orders spread across 40 months is classified as `top_customer` despite low month-to-month activity — infrequent but high-value purchasing behavior that Month+1 retention is not designed to capture.
+The retention gap between `top_customer` (2.70%) and `loyal_low_value` (3.47%) requires nuanced interpretation. Top customers are classified on total historical revenue, not purchase frequency. A customer who placed two very large orders spread across 40 months is classified as `top_customer` despite low month-to-month activity — infrequent but high-value purchasing behavior that Month+1 retention is not designed to capture.
 
 > **Model Limitation — Documented**  
 > The CLV threshold of 1,000 was derived from the empirical distribution (P75 ≈ 1,094). An arbitrary threshold such as 500 — which falls between the median and P75 — would cut through the middle of the distribution without statistical justification. The threshold should be recalibrated against actual CAC data in a production environment, where CLV:CAC ≥ 3:1 serves as an additional validation benchmark. A more granular model incorporating purchase frequency as a standalone dimension would produce cleaner retention separation across segments.
 
 ---
 
-## 🏁 Final Conclusion: The real cost of short-term thinking
+## Final Conclusion: The real cost of short-term thinking
 
 The data tells a coherent and cautionary story. California is the highest-revenue state in this dataset — that fact is not in dispute. But the nature of that revenue has fundamentally changed since 2021. The early years showed genuine, compounding growth: high-value customers being acquired, returning, and expanding their spend. That growth was slow by comparison, but it was durable.
 
 From 2021 onward, acquisition shifted toward volume. More customers, more orders, higher monthly numbers. The revenue metrics responded accordingly, producing impressive YoY figures that would have satisfied a standard reporting requirement. What those figures obscured was the accelerating share of customers with no demonstrated intention to return.
 
-By early 2022, the consequences were already visible: revenue declining YoY, new cohorts dominated by `low_value` customers, and the `top_customer` pipeline running dry. **Without intervention, this trajectory will continue.** A revenue base built on one-time buyers is not a revenue base — it is a recurring acquisition cost.
+By early 2022, the consequences were already visible: revenue declining YoY, new cohorts dominated by `low_value` customers, and the `top_customer` pipeline running dry. **Without intervention, this trajectory is likely continue.** A revenue base built on one-time buyers is not a revenue base — it is a recurring acquisition cost.
 
 ### Forward-looking recommendations
 
@@ -147,7 +147,7 @@ By early 2022, the consequences were already visible: revenue declining YoY, new
 
 ---
 
-## 💡 Why this matters: The analyst's mindset
+## Why this matters: The analyst's mindset
 
 This project was built around a deliberate analytical philosophy: **never stop at "what happened."** Every answer should generate a better question. Revenue by state generates "Is it growing?" YoY growth generates "Is the data complete?" Volume growth generates "What kind of customers?" Acquisition counts generate "Are they coming back?"
 
