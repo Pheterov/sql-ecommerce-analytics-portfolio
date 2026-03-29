@@ -110,23 +110,34 @@ This segmentation provides something that revenue alone cannot: a **quality sign
 
 ## Key Insight: Growth ≠ Health
 
-Applying the segmentation model to acquisition cohorts revealed the central finding of this analysis. In 2018–2020, months with strong YoY revenue were consistently backed by meaningful `top_customer` acquisition. October 2020 brought in 4 top customers alongside +49.55% YoY growth. December 2020 added 3 top customers with +78.6% revenue growth. The growth was real, and the customers driving it had demonstrated their willingness to return.
+Applying the segmentation model to acquisition cohorts revealed the central finding of this analysis. In 2018–2020, months with strong YoY revenue were consistently backed by meaningful `top_customer` acquisition. July 2020 brought in 4 top customers alongside +758.55% YoY growth. Let's take a moment there, the 750% increase in revenue looks amazing but we shouldn't celebrate too early, we must always remain conscious and not let the emotions take over too easily. We're comparing to one of the worst periods in the dataset...
+Oecember 2020 added 4 top customers with +49.55% revenue growth followed by additional 3 top_customers in December with a +78,6% increase in YoY revenue. The growth was real, and the customers driving it had demonstrated their willingness to return.
 
-
+| acquisition_month | current_year_revenue | last_year_revenue | revenue_pct_difference | top_customers | risky_high_value |  loyal_low_value | low_value | total_customers |
+|-------------------|----------------------|-------------------|------------------------|---------------|------------------|------------------|-----------|-----------------|
+| 2020-12-01        | 19555,03             | 10948,89          | 78,6                   | 3             | 1                | 5                | 9         | 18              |
+| 2020-11-01        | 8693,27              | 11540,17          | -24,67                 | 2             | 0                | 4                | 7         | 13              |
+| 2020-10-01        | 12468,53             | 8337,56           | 49,55                  | 4             | 2                | 10               | 6         | 22              |
+| 2020-09-01        | 11782,73             | 8576,13           | 37,39                  | 4             | 2                | 4                | 2         | 12              |
+| 2020-08-01        | 8561,93              | 4865,92           | 75,96                  | 2             | 1                | 2                | 4         | 9               |
+| 2020-07-01        | 16319,06             | 1901,92           | 758,03                 | 4             | 1                | 4                | 6         | 15              |
+| 2020-06-01        | 5063,7               | 7268,74           | -30,34                 | 2             | 0                | 3                | 6         | 11              |
+| 2020-05-01        | 6957,42              | 9417,0            | -26,12                 | 2             | 0                | 3                | 6         | 11              |
+| 2020-04-01        | 15108,3              | 5709,64           | 164,61                 | 1             | 0                | 3                | 1         | 5               |
 
 From 2021 onward, that pattern broke down. The months with the most dramatic revenue spikes — September 2021 (+71.85%), November 2021 (+111.05%), March 2021 (+179.05%) — acquired **zero or one top_customer**. The dominant segments were `low_value` and `risky_high_value`. Revenue numbers looked strong because volume was high. But the customers behind that volume had no demonstrated propensity to return.
 
 | acquisition_month | current_year_revenue | last_year_revenue | revenue_pct_difference | top_customers | risky_high_value | loyal_low_value | low_value | total_customers |
-|------------------|---------------------|-------------------|------------------------|---------------|------------------|------------------|-----------|-----------------|
-| 2021-11-01       | 18346.94            | 8693.27           | 111.05                 | 0             | 3                | 0                | 9         | 12              |
-| 2021-10-01       | 15769.12            | 12468.53          | 26.47                  | 0             | 0                | 1                | 7         | 8               |
-| 2021-09-01       | 20248.41            | 11782.73          | 71.85                  | 1             | 3                | 1                | 7         | 12              |
-| 2021-08-01       | 13034.04            | 8561.93           | 52.23                  | 1             | 1                | 1                | 4         | 7               |
-| 2021-07-01       | 9231.12             | 16319.06          | -43.43                 | 0             | 2                | 2                | 6         | 10              |
-| 2021-06-01       | 8141.68             | 5063.7            | 60.79                  | 0             | 0                | 1                | 6         | 7               |
-| 2021-05-01       | 5420.44             | 6957.42           | -22.09                 | 0             | 0                | 1                | 7         | 8               |
-| 2021-04-01       | 13152.17            | 15108.3           | -12.95                 | 2             | 1                | 0                | 9         | 12              |
-| 2021-03-01       | 8284.0              | 2968.69           | 179.05                 | 0             | 0                | 1                | 4         | 5               |
+|-------------------|----------------------|-------------------|------------------------|---------------|------------------|-----------------|-----------|-----------------|
+| 2021-11-01        |            18 346,94 |          8 693,27 |                 111,05 | 0             | 3                | 0               |         9 |              12 |
+| 2021-10-01        |            15 769,12 |         12 468,53 |                  26,47 | 0             | 0                | 1                | 7         | 8               |
+| 2021-09-01        |            20 248,41 |         11 782,73 | 71,85                  | 1             | 3                | 1                | 7         | 12              |
+| 2021-08-01        |            13 034,04 |          8 561,93 | 52,23                  | 1             | 1                | 1                | 4         | 7               |
+| 2021-07-01        |             9 231,12 |         16 319,06 | -43,43                 | 0             | 2                | 2                | 6         | 10              |
+| 2021-06-01        |             8 141,68 |          5 063,70 | 60,79                  | 0             | 0                | 1                | 6         | 7               |
+| 2021-05-01        |             5 420,44 |          6 957,42 | -22,09                 | 0             | 0                | 1                | 7         | 8               |
+| 2021-04-01        |            13 152,17 |         15 108,30 | -12,95                 | 2             | 1                | 0                | 9         | 12              |
+| 2021-03-01        |             8 284,00 |          2 968,69 | 179,05                 | 0             | 0                | 1                | 4         | 5               |
 
 <img width="1086" height="606" alt="image" src="https://github.com/user-attachments/assets/a87a9f4a-e4f5-416f-9fcc-166c163a5699" />
 <img width="1084" height="606" alt="image" src="https://github.com/user-attachments/assets/674304d1-cbc6-452d-b3e4-8ac1a379334f" />
