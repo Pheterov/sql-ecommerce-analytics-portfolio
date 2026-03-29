@@ -1,4 +1,4 @@
-# The Story of California's Revenue: A Data-Driven Warning
+# The Story of California's Revenue: A Data-Driven Warning 
 
 > **SQL Portfolio · E-Commerce Analytics**  
 > Author: Piotr Rzepka · Database: `supersales` (MySQL 8.0+) · Period: 2018–2022
