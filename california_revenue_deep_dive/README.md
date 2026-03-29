@@ -56,7 +56,18 @@ This moment illustrates a foundational analytical principle: **never draw conclu
 
 With data integrity confirmed, the analysis moved to understanding California's growth dynamics at a monthly level. Month-over-month and year-over-year metrics — revenue, order counts, unique customers, items sold, average order value, and discount depth — painted a picture of strong apparent growth in late 2021.
 
-<img width="1084" height="202" alt="image" src="https://github.com/user-attachments/assets/8cb8cb73-7130-48cd-9dc8-ab1e3d9ba452" />
+<img width="1084" height="202" alt="image" src="https://github.com/user-attachments/assets/79128c37-da98-4cec-ba6f-4dcd934e364a" />
+
+<img width="1084" height="202" alt="image" src="https://github.com/user-attachments/assets/6dfc6155-7678-413f-b5c3-379d0fdb61c6" />
+
+<img width="1084" height="202" alt="image" src="https://github.com/user-attachments/assets/dc8d2a3d-284f-4cdc-9f77-f38434fa7d78" />
+
+<img width="1084" height="202" alt="image" src="https://github.com/user-attachments/assets/5a669231-64c3-47ad-a08e-7693cad3accd" />
+
+<img width="1084" height="202" alt="image" src="https://github.com/user-attachments/assets/e503b0ef-ca4a-4089-ba59-534bb51e5f12" />
+
+<img width="1084" height="202" alt="image" src="https://github.com/user-attachments/assets/78275d06-a02a-4aa0-a97b-4fc9cc16a8e1" />
+
 
 September 2021 showed +71.85% YoY revenue growth, nearly doubling items sold (+87%) and growing unique customers by +57%. November 2021 produced even more striking numbers: +111% revenue growth, with the same number of unique customers as the prior year. By conventional metrics, these are headline-worthy results.
 
