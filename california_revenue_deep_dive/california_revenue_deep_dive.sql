@@ -483,7 +483,17 @@ FROM customer_metrics
 ORDER BY total_revenue DESC;
  
 /*================================================================================================================================================================================================
-Query result — segment summary:
+Query result
+
+| customer_id | orders_cnt | historical_revenue  | avg_order_value  | is_repeat_customer | customer_segment |
+|-------------|------------|---------------------|------------------|--------------------|------------------|
+| 457         | 2          | 8349.89             | 4174.95          | 1                  | top_customer     |
+| 433         | 2          | 7301.73             | 3650.86          | 1                  | top_customer     |
+| 450         | 4          | 7182.77             | 1795.69          | 1                  | top_customer     |
+| 280         | 3          | 5848.69             | 1949.56          | 1                  | top_customer     |
+| 579         | 2          | 5182.58             | 2591.29          | 1                  | top_customer     |
+
+Segment summary:
  
 | customer_segment | customers_cnt | total_revenue | avg_revenue | avg_orders | min_revenue | max_revenue |
 |------------------|---------------|---------------|-------------|------------|-------------|-------------|
